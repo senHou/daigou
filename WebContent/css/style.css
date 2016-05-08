@@ -1,0 +1,69 @@
+body{
+	padding: 0px;
+}
+
+div{
+	margin: 0 auto;
+}
+
+.header{
+	width: 800px;
+	height:50px;
+	text-align: center;
+}
+
+.navi li{
+	list-style: none;
+}
+
+.navi li ol {
+	display:inline;
+}
+
+.navi li ol a {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+	line-height: 3;
+}
+
+.contanier {
+	width: 80%;
+}
+
+.content {
+
+	margin-top:20px;
+	width: 800px;
+}
+
+#addShippingTable,#addWeekOrderDetailTable {
+	margin: 0 auto;
+	margin-top:20px;
+}
+
+#addShippingTable td{
+	border-bottom: 1px solid white;
+}
+
+.title {
+	background-color: #c0c0c0;
+}
+
+.error{
+	color:red;
+}
+
+table{
+	
+}
+
+th{
+	color: white;
+	width:150px;
+}
+
+.backgroundColor80ff00{
+	background-color:#80ff00;
+}
+

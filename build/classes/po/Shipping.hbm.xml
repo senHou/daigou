@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="po">
+
+	<class name="Shipping" table="shipping">
+		<id name="shippingNo" column="shipping_no" type="string"></id>
+		<property name="date" type="date" column="shipping_date" />
+		<property name="address" type="string" column="shipping_address" />
+		<property name="phoneNumber" type="long" column="shipping_phoneNumber" />
+		<many-to-one name="customer" class="po.Customer" fetch="join" lazy = "false">
+			<column name="customer" not-null="true" />
+		</many-to-one>
+		<many-to-one name="shippingCompany" class="po.ShippingCompany"  fetch="select" lazy="false">
+			<column name="shipping_company" not-null="true" />
+		</many-to-one>
+	</class>
+
+</hibernate-mapping>

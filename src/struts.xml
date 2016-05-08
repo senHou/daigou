@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+
+    <package name="default" namespace="/" extends="struts-default">
+
+        <default-action-ref name="index" />
+
+        <action name="index">
+            <result>index.jsp</result>
+        </action>
+        
+        <action name="initAddShipping" class="action.ShippingAction" method="initAddShipping">
+        	<result name="success">/shipping/initAddShipping.jsp</result>
+        	<result name="error">error.jsp</result>				   
+        </action>
+        
+       	<action name="addShipping" class="action.ShippingAction" method="addShipping">
+        	<result name="success">/shipping/initAddShipping.jsp</result>
+        	<result name="error" type="redirectAction">
+        		<param name="actionName">initAddShipping</param>
+         		<param name="errorMessage">Add Shipping Error</param>
+        	</result>				   
+        </action>
+        
+        <action name="shippingDisplay" class="action.ShippingAction" method="display">
+        	<result name="success">/shipping/display.jsp</result>
+        	<result name="error">error.jsp</result>	
+        </action>
+        
+        <action name="initAddWeekOrderDetail" class = "action.WeekOrderDetailAction" method="initSave">
+        	<result>/weekOrderDetail/weekOrderDetailNew.jsp</result>
+        </action>
+         <action name="addWeekOrderDetail" class = "action.WeekOrderDetailAction" method="save">
+        	<result name="success">/weekOrderDetail/weekOrderDetail.jsp</result>
+        	<result name="error">/weekOrderDetail/weekOrderDetailNew.jsp</result>
+        </action>
+        
+    </package>
+
+
+    <!-- Add packages here -->
+
+</struts>

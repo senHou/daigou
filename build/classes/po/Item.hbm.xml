@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="po">
+
+	<class name="Item" table="item">
+		<id name="id" column="id" type="int">
+			<generator class="identity" />
+		</id>
+		<property name="name" type="string" column="name" />
+		<many-to-one name="brand" column="brand_id"  class="po.Brand" not-null="true"/>
+	</class>
+
+</hibernate-mapping>

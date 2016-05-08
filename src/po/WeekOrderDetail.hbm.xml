@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="po">
+
+	<class name="WeekOrderDetail" table="week_order_detail">
+		<composite-id>
+    		<key-property name="itemId" type="int" column = "item_id"/> 
+    		<key-property name="weekNo" type="int" column = "week_no"/> 
+			<key-property name="year" type="int" column = "year"/> 
+  		</composite-id>
+  		<property name="itemName" type="string" column="item_name" />
+  		<property name="brandId" type="int" column="brand_Id" />
+  		<property name="brandName" type="string" column="brand_name" />
+  		<property name="quantity" type="int" column="quantity" />
+		<property name="createDate" type="date" column="create_date" />
+		
+	</class>
+
+</hibernate-mapping>
+
