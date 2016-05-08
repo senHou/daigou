@@ -1,0 +1,1 @@
+This is a project for myself to manage my small daigou business.
