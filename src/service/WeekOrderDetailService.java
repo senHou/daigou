@@ -37,4 +37,10 @@ public class WeekOrderDetailService extends Service{
 		}
 
 	}
+
+	@Override
+	public List findBy(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

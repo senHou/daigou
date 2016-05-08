@@ -31,4 +31,6 @@ public abstract class Service {
 	}
 	
 	public abstract void saveAll(Object objList);
+	
+	public abstract List findBy(Object obj);
 }

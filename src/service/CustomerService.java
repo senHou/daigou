@@ -24,4 +24,10 @@ public class CustomerService extends Service{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public List findBy(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
