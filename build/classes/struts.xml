@@ -42,20 +42,36 @@
         	<result name="error">/weekOrderDetail/weekOrderDetailNew.jsp</result>
         </action>
         
-        <action name="initAddBrand" class = "action.BrandAction" method="initAddBrand">
+        <action name="initAddBrand" class = "action.BrandAction" method="initAdd">
         	<result>/brand/brandNew.jsp</result>
         </action>
         
-        <action name="addBrand" class = "action.BrandAction" method="AddBrand">
+        <action name="addBrand" class = "action.BrandAction" method="add">
         	<result name="success">/brand/brandNew.jsp</result>
         	<result name="error">/brand/brandNew.jsp</result>
         </action>
         
-        <action name="initUploadBrandFile" class="action.BrandAction" method="initBrandFile">
+        <action name="initUploadBrandFile" class="action.BrandAction" method="initFile">
         	<result>/brand/upload.jsp</result>
         </action>
         
         <action name="uploadBrandFile" class = "action.BrandAction" method="uploadFile">
+        </action>
+        
+        
+        
+        <action name="initAddCustomer" class = "action.CustomerAction" method="initAdd">
+        	<result>/customer/customerNew.jsp</result>
+        </action>
+        
+        <action name="addCustomer" class = "action.CustomerAction" method="add">
+        	<result name="success">/customer/customerNew.jsp</result>
+        	<result name="error">/customer/customerNew.jsp</result>
+        </action>
+        <action name="initUploadCustomerFile" class="action.CustomerAction" method="initFile">
+        	<result>/customer/upload.jsp</result>
+        </action>
+        <action name="uploadCustomerFile" class = "action.CustomerAction" method="uploadFile" >
         </action>
         
     </package>

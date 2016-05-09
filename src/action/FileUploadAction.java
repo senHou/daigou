@@ -4,7 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import excel.ExcelUpload;
 
-public abstract class FileUploadAction extends ActionSupport {
+public abstract class FileUploadAction extends CommonAction {
 
 	protected String fileName;
 	protected int sheetIdx = 0;
@@ -35,5 +35,9 @@ public abstract class FileUploadAction extends ActionSupport {
 	}
 
 	public abstract void uploadFile();
+	
+	public  String initFile(){
+		return SUCCESS;
+	}
 
 }

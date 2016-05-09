@@ -1,7 +1,11 @@
-/po/
 /action/
 /dao/
-/service/
 /excel/
-/test/
+/exception/
 /factory/
+/hibernate.cfg.xml
+/po/
+/service/
+/struts.xml
+/test/
+/utils/

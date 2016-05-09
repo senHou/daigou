@@ -3,10 +3,10 @@ package service;
 import java.util.List;
 
 import dao.hibernate.CustomerDao;
+import po.Customer;
 import po.Shipping;
 
 public class CustomerService extends Service{
-	
 	
 	public CustomerService(String type) {
 		super(type);
@@ -18,8 +18,12 @@ public class CustomerService extends Service{
 
 	@Override
 	public void saveAll(Object objList) {
-		// TODO Auto-generated method stub
-		
+		List<Customer> customerList = (List<Customer>)objList;
+		for (Customer customer : customerList) {
+			if (get(Customer.class, customer.getId()) == null) {
+				save(customer);
+			}
+		}
 	}
 
 	@Override

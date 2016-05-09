@@ -13,16 +13,12 @@ import factory.DaoFactory;
 public class BrandAction extends FileUploadAction{
 	
 	
-	ExcelUpload uploadAction;
-	Service service;
-	Brand brand;
+	private ExcelUpload uploadAction;
+	private Service service;
+	private Brand brand;
 	public BrandAction() {
 		service = new BrandService(DaoFactory.BRAND);
 		this.startRow = 0;
-	}
-
-	public String initBrandFile(){
-		return SUCCESS;
 	}
 	
 	@Override
@@ -37,15 +33,6 @@ public class BrandAction extends FileUploadAction{
 		}
 	}
 	
-	public String AddBrand(){
-		System.out.println("testing");
-		service.save(brand);
-		return SUCCESS;
-	}
-	
-	public String initAddBrand(){
-		return SUCCESS;
-	}
 
 	public Brand getBrand() {
 		return brand;
@@ -54,4 +41,16 @@ public class BrandAction extends FileUploadAction{
 	public void setBrand(Brand brand) {
 		this.brand = brand;
 	}
+
+	@Override
+	public String add() {
+		service.save(brand);
+		return SUCCESS;
+	}
+
+	@Override
+	public String edit() {
+		return null;
+	}
+
 }
