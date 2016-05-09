@@ -13,7 +13,7 @@ import org.hibernate.Transaction;
 import exception.DataAccessLayerException;
 import utils.HibernateUtil;
 
-public class HibernateDao {
+public abstract class HibernateDao {
 
 	protected Session session;
 	protected Transaction tx;
@@ -69,4 +69,7 @@ public class HibernateDao {
 		e.printStackTrace();
 		throw new DataAccessLayerException(e);
 	}
+	
+	public abstract List findBy(Object object);
+	public abstract void saveAll(Object object);
 }

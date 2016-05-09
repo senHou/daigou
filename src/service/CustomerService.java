@@ -6,10 +6,7 @@ import dao.hibernate.CustomerDao;
 import po.Shipping;
 
 public class CustomerService extends Service{
-
-	public CustomerService(){
-		super();
-	}
+	
 	
 	public CustomerService(String type) {
 		super(type);

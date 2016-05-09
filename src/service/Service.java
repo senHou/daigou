@@ -10,10 +10,6 @@ public abstract class Service {
 
 	protected HibernateDao dao;
 	
-	public Service(){
-		dao = DaoFactory.getDao();
-	}
-	
 	public Service(String type){
 		dao = DaoFactory.getDao(type);
 	}

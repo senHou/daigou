@@ -4,9 +4,6 @@ import java.util.List;
 
 public class ShippingService extends Service{
 
-	public ShippingService(){
-		super();
-	}
 	
 	public ShippingService(String type) {
 		super(type);

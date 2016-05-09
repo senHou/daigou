@@ -48,13 +48,13 @@ public abstract class ExcelUpload {
 		this.errorMessage = errorMessage;
 	}
 
-	public abstract List<Object> convertRowListToObjectList();
+	public abstract Object convertRowListToObjectList();
 
-	public List<Object> upload(int sheetIdx, int startRow) throws Exception {
+	public Object upload(int sheetIdx, int startRow) throws Exception {
 		defineColumns();
 		parser = new ExcelFileParser(columns);
 		parser.readSpreadsheetRows(targetFile, sheetIdx, startRow, rowValueList);
-		List<Object> objectList = convertRowListToObjectList();
+		Object objectList = convertRowListToObjectList();
 
 		return objectList;
 	}

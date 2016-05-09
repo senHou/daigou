@@ -1,6 +1,7 @@
 package po;
 
 import java.util.Date;
+import java.util.Set;
 
 public class Shipping {
 
@@ -10,6 +11,7 @@ public class Shipping {
 	private long phoneNumber;
 	private String address;
 	private ShippingCompany shippingCompany;
+	private Set<ShippingDetail> shippingDetailSet;
 
 	public Shipping() {
 	}
@@ -71,6 +73,14 @@ public class Shipping {
 	
 	public void setShippingCompany(ShippingCompany shippingCompany) {
 		this.shippingCompany = shippingCompany;
+	}
+	
+	public Set<ShippingDetail> getShippingDetailSet() {
+		return shippingDetailSet;
+	}
+	
+	public void setShippingDetailSet(Set<ShippingDetail> shippingDetailSet) {
+		this.shippingDetailSet = shippingDetailSet;
 	}
 
 	@Override

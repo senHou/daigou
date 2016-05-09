@@ -9,9 +9,6 @@ import po.WeekOrderDetail;
 public class WeekOrderDetailService extends Service{
 	
 	WeekOrderDetailDao orderDao;
-	public WeekOrderDetailService(){
-		super();
-	}
 	
 	public WeekOrderDetailService(String type) {
 		super(type);

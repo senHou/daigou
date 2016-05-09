@@ -2,7 +2,7 @@ package dao.hibernate;
 
 import java.util.List;
 
-public class ShippingDao extends HibernateDao {
+public class ShippingCompanyDao extends HibernateDao{
 
 	@Override
 	public List findBy(Object object) {

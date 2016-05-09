@@ -82,6 +82,8 @@ name varchar(20) not null
 );
 
 
+insert into brand (name) values('swisse');
+select * from brand;
 
 insert into customer (id,name) values('41272119887778542X','杨洋');
 

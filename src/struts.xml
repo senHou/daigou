@@ -42,6 +42,22 @@
         	<result name="error">/weekOrderDetail/weekOrderDetailNew.jsp</result>
         </action>
         
+        <action name="initAddBrand" class = "action.BrandAction" method="initAddBrand">
+        	<result>/brand/brandNew.jsp</result>
+        </action>
+        
+        <action name="addBrand" class = "action.BrandAction" method="AddBrand">
+        	<result name="success">/brand/brandNew.jsp</result>
+        	<result name="error">/brand/brandNew.jsp</result>
+        </action>
+        
+        <action name="initUploadBrandFile" class="action.BrandAction" method="initBrandFile">
+        	<result>/brand/upload.jsp</result>
+        </action>
+        
+        <action name="uploadBrandFile" class = "action.BrandAction" method="uploadFile">
+        </action>
+        
     </package>
 
 

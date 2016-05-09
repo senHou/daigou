@@ -1,8 +1,11 @@
 package factory;
 
+import dao.hibernate.BrandDao;
 import dao.hibernate.CustomerDao;
 import dao.hibernate.HibernateDao;
+import dao.hibernate.ShippingCompanyDao;
 import dao.hibernate.ShippingDao;
+import dao.hibernate.ShippingDetailDao;
 import dao.hibernate.WeekOrderDetailDao;
 
 public class DaoFactory {
@@ -11,10 +14,9 @@ public class DaoFactory {
 	public final static String SHIPPING ="SHIPPING";
 	public final static String SHIPPING_COMPANY ="SHIPPING_COMPANY";
 	public final static String WEEK_ORDER_DETAIL ="WEEK_ORDER_DETAIL";
+	public final static String SHIPPING_DETAIL = "SHIPPING_DETAIL";
+	public final static String BRAND = "BRAND";
 	
-	public static HibernateDao getDao(){
-		return new HibernateDao();
-	}
 	
 	public static HibernateDao getDao(String daoType){
 		
@@ -31,11 +33,19 @@ public class DaoFactory {
 		}
 		
 		if (daoType.equals(SHIPPING_COMPANY)){
-			return new HibernateDao();
+			return new ShippingCompanyDao();
 		}
 		
 		if (daoType.equals(WEEK_ORDER_DETAIL)) {
 			return new WeekOrderDetailDao();
+		}
+		
+		if (daoType.equals(SHIPPING_DETAIL)) {
+			return new ShippingDetailDao();
+		}
+		
+		if (daoType.equals(BRAND)) {
+			return new BrandDao();
 		}
 		
 		return null;

@@ -17,6 +17,11 @@
 		<many-to-one name="shippingCompany" class="po.ShippingCompany"  fetch="select" lazy="false">
 			<column name="shipping_company" not-null="true" />
 		</many-to-one>
+		
+		<set name="shippingDetailSet" cascade="all">
+         	<key column="shipping_no"/>
+        	<one-to-many class="po.ShippingDetail"/>
+      	</set>
 	</class>
 
 </hibernate-mapping>
