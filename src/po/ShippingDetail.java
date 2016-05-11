@@ -9,6 +9,23 @@ public class ShippingDetail {
 
 	public ShippingDetail() {
 	}
+	
+	public ShippingDetail(int id, String shippingNo, Item item, double soldPrice, int quantity) {
+		super();
+		this.id = id;
+		this.shippingNo = shippingNo;
+		this.item = item;
+		this.soldPrice = soldPrice;
+		this.quantity = quantity;
+	}
+
+	public ShippingDetail(String shippingNo, Item item, double soldPrice, int quantity) {
+		super();
+		this.shippingNo = shippingNo;
+		this.item = item;
+		this.soldPrice = soldPrice;
+		this.quantity = quantity;
+	}
 
 	public int getId() {
 		return id;
@@ -48,6 +65,12 @@ public class ShippingDetail {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	@Override
+	public String toString() {
+		return "ShippingDetail [id=" + id + ", shippingNo=" + shippingNo + ", item=" + item + ", soldPrice=" + soldPrice
+				+ ", quantity=" + quantity + "]";
 	}
 
 }

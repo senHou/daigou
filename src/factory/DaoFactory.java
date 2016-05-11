@@ -3,6 +3,7 @@ package factory;
 import dao.hibernate.BrandDao;
 import dao.hibernate.CustomerDao;
 import dao.hibernate.HibernateDao;
+import dao.hibernate.ItemDao;
 import dao.hibernate.ShippingCompanyDao;
 import dao.hibernate.ShippingDao;
 import dao.hibernate.ShippingDetailDao;
@@ -16,7 +17,7 @@ public class DaoFactory {
 	public final static String WEEK_ORDER_DETAIL ="WEEK_ORDER_DETAIL";
 	public final static String SHIPPING_DETAIL = "SHIPPING_DETAIL";
 	public final static String BRAND = "BRAND";
-	
+	public final static String ITEM = "ITEM";
 	
 	public static HibernateDao getDao(String daoType){
 		
@@ -46,6 +47,10 @@ public class DaoFactory {
 		
 		if (daoType.equals(BRAND)) {
 			return new BrandDao();
+		}
+		
+		if (daoType.equals(ITEM)) {
+			return new ItemDao();
 		}
 		
 		return null;

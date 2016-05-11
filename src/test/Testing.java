@@ -1,6 +1,13 @@
 package test;
 
-import action.BrandAction;
+import java.util.List;
+
+import factory.DaoFactory;
+import po.Item;
+import po.Shipping;
+import service.ItemService;
+import service.Service;
+import service.ShippingService;
 
 public class Testing {
 
@@ -29,12 +36,46 @@ public class Testing {
 //				System.out.println(map.get("errorMessage"));
 //			}
 			
-			BrandAction action = new BrandAction();
-			action.setFileName("/Users/sen/Desktop/brand.xls");
-			action.uploadFile();
+//			BrandAction action = new BrandAction();
+//			action.setFileName("/Users/sen/Desktop/brand.xls");
+//			action.uploadFile();
+			
+			
+			//testShipping();
+			testItem();
 			
 		}catch(Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public static void testShipping(){
+		Service service = new ShippingService(DaoFactory.SHIPPING);
+		
+//		Shipping shipping = new Shipping();
+//		Customer customer = new Customer("410105198711030135","侯森");
+//		Set<ShippingDetail> shippingDetailSet = new HashSet<ShippingDetail>();
+//		shippingDetailSet.add(new ShippingDetail("77000456978", new Item(1,new Brand(1,"swisse"),"蔓越莓"),120, 2));
+//		shipping.setAddress("50 campise street");
+//		shipping.setDate(new Date());
+//		shipping.setCustomer(customer);
+//		shipping.setShippingNo("77000456978");
+//		shipping.setShippingCompany(new ShippingCompany(1,"中邮","www.cnpex.com.au"));
+//		shipping.setShippingDetailSet(shippingDetailSet);
+//		shipping.setPhoneNumber("13544448888");
+//		
+//		service.save(shipping);
+		
+		Shipping shipping = (Shipping) service.get(Shipping.class, "77000456978");
+		System.out.println(shipping);
+	}
+	
+	
+	public static void testItem(){
+		Service service = new ItemService(DaoFactory.ITEM);
+		List<Item> itemList = service.findBy("1");
+		for (Item item : itemList) {
+			System.out.println(item.getId()+" "+item.getName());
 		}
 	}
 }

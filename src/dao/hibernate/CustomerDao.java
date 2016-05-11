@@ -26,11 +26,4 @@ public class CustomerDao extends HibernateDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-	@Override
-	public void saveAll(Object object) {
-		// TODO Auto-generated method stub
-		
-	}
 }

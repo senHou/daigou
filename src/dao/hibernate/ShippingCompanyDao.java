@@ -10,10 +10,5 @@ public class ShippingCompanyDao extends HibernateDao{
 		return null;
 	}
 
-	@Override
-	public void saveAll(Object object) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

@@ -17,22 +17,4 @@ public class BrandDao extends HibernateDao{
 		List<Brand> brandList = query.list();
 		return brandList;
 	}
-
-	@Override
-	public void saveAll(Object object) {
-		List<Brand> brandList = (List<Brand>)object;
-		
-		for (Brand brand : brandList) {
-			List<Brand> tmp = findBy(brand.getName());
-			
-			if (tmp != null && tmp.size() > 0) {
-				//do noting
-			}else {
-				save(brand);
-			}
-		}
-		
-	}
-	
-	
 }

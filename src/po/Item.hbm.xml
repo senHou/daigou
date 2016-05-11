@@ -11,7 +11,7 @@
 			<generator class="identity" />
 		</id>
 		<property name="name" type="string" column="name" />
-		<many-to-one name="brand" column="brand_id"  class="po.Brand" not-null="true"/>
+		<many-to-one name="brand" column="brand_id"  class="po.Brand" fetch="select" lazy="false" not-null="true"/>
 	</class>
 
 </hibernate-mapping>

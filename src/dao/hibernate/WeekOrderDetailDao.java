@@ -34,9 +34,4 @@ public class WeekOrderDetailDao extends HibernateDao {
 		return null;
 	}
 
-	@Override
-	public void saveAll(Object object) {
-		// TODO Auto-generated method stub
-		
-	}
 }

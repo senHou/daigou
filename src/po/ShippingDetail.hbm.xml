@@ -12,7 +12,9 @@
 		</id>
 		<property name="shippingNo" type="string" column="shipping_no" />
 		<property name="soldPrice" type="double" column="sold_price" />
-		<property name="quantity" type="long" column="quantity" />
+		<property name="quantity" type="int" column="quantity" />
+		
+		<many-to-one name="item" column="item_id" unique="true"  class="po.Item" not-null="true"/>
 	</class>
 
 </hibernate-mapping>

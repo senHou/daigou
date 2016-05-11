@@ -1,6 +1,7 @@
 package po;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 public class Shipping {
@@ -8,15 +9,16 @@ public class Shipping {
 	private String shippingNo;
 	private Date date;
 	private Customer customer;
-	private long phoneNumber;
+	private String phoneNumber;
 	private String address;
 	private ShippingCompany shippingCompany;
 	private Set<ShippingDetail> shippingDetailSet;
+	
 
 	public Shipping() {
 	}
 
-	public Shipping(String shippingNo, Date date, Customer customer, long phoneNumber, String address,
+	public Shipping(String shippingNo, Date date, Customer customer, String phoneNumber, String address,
 			ShippingCompany shippingCompany) {
 		super();
 		this.shippingNo = shippingNo;
@@ -51,11 +53,11 @@ public class Shipping {
 		this.customer = customer;
 	}
 
-	public long getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(long phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -85,7 +87,7 @@ public class Shipping {
 
 	@Override
 	public String toString() {
-		return "Shipping [shippingNo=" + shippingNo + ", customer=" + customer.toString() + ", phoneNumber="
+		return "Shipping [shippingNo=" + shippingNo + ", date=" + date + ", customer=" + customer + ", phoneNumber="
 				+ phoneNumber + ", address=" + address + ", shippingCompany=" + shippingCompany + "]";
 	}
 

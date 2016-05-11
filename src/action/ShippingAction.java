@@ -7,6 +7,7 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionSupport;
 
 import factory.DaoFactory;
+import po.Brand;
 import po.Customer;
 import po.Shipping;
 import po.ShippingCompany;
@@ -21,7 +22,7 @@ public class ShippingAction extends ActionSupport{
 	private List shippingList;
 	private Shipping shipping;
 	private String errorMessage;
-	
+	private List brandList;
 	
 	public ShippingAction(){
 		service = new ShippingService(DaoFactory.SHIPPING);
@@ -30,7 +31,7 @@ public class ShippingAction extends ActionSupport{
 	public String initAddShipping(){
 		shippingCompanyList = service.getAll(ShippingCompany.class);
 		customerList = service.getAll(Customer.class);
-		System.out.println(Arrays.toString(customerList.toArray()));
+		brandList = service.getAll(Brand.class);
 		return SUCCESS;
 	}
 	
@@ -88,5 +89,13 @@ public class ShippingAction extends ActionSupport{
 	
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
+	}
+
+	public List<Brand> getBrandList() {
+		return brandList;
+	}
+
+	public void setBrandList(List<Brand> brandList) {
+		this.brandList = brandList;
 	}
 }

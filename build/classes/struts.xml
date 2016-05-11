@@ -16,13 +16,17 @@
             <result>index.jsp</result>
         </action>
         
+        
+        <action name="printItemOptions" class="action.ItemAction" method="printOptions">
+        </action>
+        
         <action name="initAddShipping" class="action.ShippingAction" method="initAddShipping">
-        	<result name="success">/shipping/initAddShipping.jsp</result>
+        	<result name="success">/shipping/shippingNew.jsp</result>
         	<result name="error">error.jsp</result>				   
         </action>
         
        	<action name="addShipping" class="action.ShippingAction" method="addShipping">
-        	<result name="success">/shipping/initAddShipping.jsp</result>
+        	<result name="success">/shipping/shippingNew.jsp</result>
         	<result name="error" type="redirectAction">
         		<param name="actionName">initAddShipping</param>
          		<param name="errorMessage">Add Shipping Error</param>

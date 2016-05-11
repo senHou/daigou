@@ -71,5 +71,4 @@ public abstract class HibernateDao {
 	}
 	
 	public abstract List findBy(Object object);
-	public abstract void saveAll(Object object);
 }
