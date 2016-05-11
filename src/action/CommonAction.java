@@ -10,11 +10,18 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import utils.DataManager;
+
 public abstract class CommonAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
 
 	protected HttpServletResponse response;
 	protected HttpServletRequest request;
-
+	protected DataManager dataManager;
+	
+	public CommonAction(){
+		dataManager = DataManager.getInstance();
+	}
+	
 	public String initAdd() {
 		return SUCCESS;
 	}

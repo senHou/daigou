@@ -18,7 +18,7 @@
 			<column name="shipping_company" not-null="true" />
 		</many-to-one>
 		
-		<set name="shippingDetailSet" cascade="all">
+		<set name="shippingDetailSet" cascade="all" >
          	<key column="shipping_no"/>
         	<one-to-many class="po.ShippingDetail"/>
       	</set>

@@ -1,7 +1,7 @@
 package po;
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Shipping {
@@ -12,7 +12,7 @@ public class Shipping {
 	private String phoneNumber;
 	private String address;
 	private ShippingCompany shippingCompany;
-	private Set<ShippingDetail> shippingDetailSet;
+	private Set<ShippingDetail> shippingDetailSet = new HashSet<ShippingDetail>();
 	
 
 	public Shipping() {

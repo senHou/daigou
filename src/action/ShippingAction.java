@@ -1,20 +1,18 @@
 package action;
 
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
-
-import com.opensymphony.xwork2.ActionSupport;
 
 import factory.DaoFactory;
 import po.Brand;
 import po.Customer;
 import po.Shipping;
 import po.ShippingCompany;
+import po.ShippingDetail;
 import service.Service;
 import service.ShippingService;
+import utils.DateUtils;
 
-public class ShippingAction extends ActionSupport{
+public class ShippingAction extends CommonAction{
 	
 	private List shippingCompanyList;
 	private List customerList;
@@ -23,25 +21,49 @@ public class ShippingAction extends ActionSupport{
 	private Shipping shipping;
 	private String errorMessage;
 	private List brandList;
+	private String date;
+	private List<ShippingDetail> detailList; 
 	
 	public ShippingAction(){
-		service = new ShippingService(DaoFactory.SHIPPING);
+		super();
+		service = new ShippingService(DaoFactory.SHIPPING);		
 	}
 	
-	public String initAddShipping(){
-		shippingCompanyList = service.getAll(ShippingCompany.class);
-		customerList = service.getAll(Customer.class);
-		brandList = service.getAll(Brand.class);
+	public String initAdd(){
+		
+		if (dataManager.getDataMap().get("shippingCompanyList") == null) {
+			shippingCompanyList = service.getAll(ShippingCompany.class);
+			dataManager.getDataMap().put("shippingCompanyList", shippingCompanyList);
+		}else {
+			shippingCompanyList = dataManager.getDataMap().get("shippingCompanyList");
+		}
+		
+		if (dataManager.getDataMap().get("customerList") == null) {
+			customerList = service.getAll(Customer.class);
+			dataManager.getDataMap().put("customerList", customerList);
+		}else {
+			customerList = dataManager.getDataMap().get("customerList");
+		}
+		
+		if (dataManager.getDataMap().get("brandList") == null) {
+			brandList = service.getAll(Brand.class);
+			dataManager.getDataMap().put("brandList", brandList);
+		}else {
+			brandList = dataManager.getDataMap().get("brandList");
+		}
 		return SUCCESS;
 	}
 	
-	public String addShipping(){
+	public String add(){
 		try {
+			shipping.setDate(DateUtils.parseStringToDate(date, "yyyy/MM/dd"));
+			shipping.getShippingDetailSet().addAll(detailList);
 			service.save(shipping);
 			errorMessage = null;
 			return SUCCESS;
 		}catch(Exception e) {
 			errorMessage = "Add shipping error.";
+			e.printStackTrace();
 			return ERROR;
 		}
 	}
@@ -97,5 +119,27 @@ public class ShippingAction extends ActionSupport{
 
 	public void setBrandList(List<Brand> brandList) {
 		this.brandList = brandList;
+	}
+
+	@Override
+	public String edit() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public String getDate() {
+		return date;
+	}
+	
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
+	public List<ShippingDetail> getDetailList() {
+		return detailList;
+	}
+	
+	public void setDetailList(List<ShippingDetail> detailList) {
+		this.detailList = detailList;
 	}
 }

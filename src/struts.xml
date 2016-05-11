@@ -20,12 +20,12 @@
         <action name="printItemOptions" class="action.ItemAction" method="printOptions">
         </action>
         
-        <action name="initAddShipping" class="action.ShippingAction" method="initAddShipping">
+        <action name="initAddShipping" class="action.ShippingAction" method="initAdd">
         	<result name="success">/shipping/shippingNew.jsp</result>
         	<result name="error">error.jsp</result>				   
         </action>
         
-       	<action name="addShipping" class="action.ShippingAction" method="addShipping">
+       	<action name="addShipping" class="action.ShippingAction" method="add">
         	<result name="success">/shipping/shippingNew.jsp</result>
         	<result name="error" type="redirectAction">
         		<param name="actionName">initAddShipping</param>
