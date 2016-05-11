@@ -20,6 +20,19 @@
         <action name="printItemOptions" class="action.ItemAction" method="printOptions">
         </action>
         
+        <action name="initAddItem" class="action.ItemAction" method="initAdd">
+        	<result name="success">/item/itemNew.jsp</result>
+        	<result name="error">error.jsp</result>				   
+        </action>
+        
+       	<action name="addItem" class="action.ItemAction" method="add">
+        	<result name="success">/item/itemNew.jsp</result>
+        	<result name="error" type="redirectAction">
+        		<param name="actionName">initAddItem</param>
+         		<param name="errorMessage">Add Shipping Error</param>
+        	</result>				   
+        </action>
+        
         <action name="initAddShipping" class="action.ShippingAction" method="initAdd">
         	<result name="success">/shipping/shippingNew.jsp</result>
         	<result name="error">error.jsp</result>				   
@@ -38,10 +51,10 @@
         	<result name="error">error.jsp</result>	
         </action>
         
-        <action name="initAddWeekOrderDetail" class = "action.WeekOrderDetailAction" method="initSave">
+        <action name="initAddWeekOrderDetail" class = "action.WeekOrderDetailAction" method="initAdd">
         	<result>/weekOrderDetail/weekOrderDetailNew.jsp</result>
         </action>
-         <action name="addWeekOrderDetail" class = "action.WeekOrderDetailAction" method="save">
+         <action name="addWeekOrderDetail" class = "action.WeekOrderDetailAction" method="add">
         	<result name="success">/weekOrderDetail/weekOrderDetail.jsp</result>
         	<result name="error">/weekOrderDetail/weekOrderDetailNew.jsp</result>
         </action>

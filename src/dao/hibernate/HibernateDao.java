@@ -10,6 +10,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import po.Customer;
 import exception.DataAccessLayerException;
 import utils.HibernateUtil;
 
@@ -62,6 +63,17 @@ public abstract class HibernateDao {
 			HibernateUtil.close(session);
 		}
 		return obj;
+	}
+	
+	public void delete(Object object) {
+		try {
+			startOperation();
+			session.delete(object);
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			HibernateUtil.close(session);
+		}
 	}
 
 	protected void handleException(Exception e) throws DataAccessLayerException {

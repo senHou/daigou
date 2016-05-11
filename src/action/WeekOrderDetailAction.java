@@ -12,7 +12,7 @@ import po.WeekOrderDetail;
 import service.Service;
 import service.WeekOrderDetailService;
 
-public class WeekOrderDetailAction extends ActionSupport {
+public class WeekOrderDetailAction extends CommonAction {
 
 	private List<WeekOrderDetail> orderDetailList;
 	private List<Brand> brandList;
@@ -20,18 +20,8 @@ public class WeekOrderDetailAction extends ActionSupport {
 	private Service service;
 	
 	public WeekOrderDetailAction(){
+		super();
 		service = new WeekOrderDetailService(DaoFactory.WEEK_ORDER_DETAIL);
-	}
-	
-	public String initSave() {
-		brandList = (List<Brand>)service.getAll(Brand.class);
-		return SUCCESS;
-	}
-	
-	public String save(){
-		service.saveAll(orderDetailList);
-		
-		return SUCCESS;
 	}
 
 	public String saveWeekOrderDetail() {
@@ -60,6 +50,18 @@ public class WeekOrderDetailAction extends ActionSupport {
 
 	public static void setItemMap(Map<Integer, List<Item>> itemMap) {
 		WeekOrderDetailAction.itemMap = itemMap;
+	}
+
+	@Override
+	public String add() {
+		brandList = (List<Brand>)service.getAll(Brand.class);
+		return SUCCESS;
+	}
+
+	@Override
+	public String edit() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -96,7 +96,7 @@ function addNewCustomer(){
 		<jsp:include page="../header.jsp"/> 
 		<div class = "content">
 			<form name="addShipping" action="addShipping" method="post">
-				<table id="addShippingTable" cellspacing="0">
+				<table id="addShippingTable" class="addTalbe" cellspacing="0">
 					<s:if test="%{errorMessage != null}">
 						<tr>
 							<td colspan="2" class = "error">

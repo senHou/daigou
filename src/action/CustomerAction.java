@@ -15,7 +15,9 @@ public class CustomerAction extends FileUploadAction{
 	private CustomerService service;
 	private ExcelUpload uploadAction;
 	private Customer customer;
+	
 	public CustomerAction(){
+		super();
 		service = new CustomerService(DaoFactory.CUSTOMER);
 		this.startRow = 0;
 	}

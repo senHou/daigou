@@ -10,6 +10,10 @@ public abstract class FileUploadAction extends CommonAction {
 	protected int sheetIdx = 0;
 	protected int startRow;
 
+	public FileUploadAction(){
+		super();
+	}
+	
 	public String getFileName() {
 		return fileName;
 	}

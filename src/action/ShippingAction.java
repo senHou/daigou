@@ -31,25 +31,25 @@ public class ShippingAction extends CommonAction{
 	
 	public String initAdd(){
 		
-		if (dataManager.getDataMap().get("shippingCompanyList") == null) {
+		if (dataManager.getDataMap().get(CommonAction.SHIPPING_COMPANY_LIST) == null) {
 			shippingCompanyList = service.getAll(ShippingCompany.class);
-			dataManager.getDataMap().put("shippingCompanyList", shippingCompanyList);
+			dataManager.getDataMap().put(CommonAction.SHIPPING_COMPANY_LIST, shippingCompanyList);
 		}else {
-			shippingCompanyList = dataManager.getDataMap().get("shippingCompanyList");
+			shippingCompanyList = dataManager.getDataMap().get(CommonAction.SHIPPING_COMPANY_LIST);
 		}
 		
-		if (dataManager.getDataMap().get("customerList") == null) {
+		if (dataManager.getDataMap().get(CommonAction.CUSTOMER_LIST) == null) {
 			customerList = service.getAll(Customer.class);
-			dataManager.getDataMap().put("customerList", customerList);
+			dataManager.getDataMap().put(CommonAction.CUSTOMER_LIST, customerList);
 		}else {
-			customerList = dataManager.getDataMap().get("customerList");
+			customerList = dataManager.getDataMap().get(CommonAction.CUSTOMER_LIST);
 		}
 		
-		if (dataManager.getDataMap().get("brandList") == null) {
+		if (dataManager.getDataMap().get(CommonAction.BRAND_LIST) == null) {
 			brandList = service.getAll(Brand.class);
-			dataManager.getDataMap().put("brandList", brandList);
+			dataManager.getDataMap().put(CommonAction.BRAND_LIST, brandList);
 		}else {
-			brandList = dataManager.getDataMap().get("brandList");
+			brandList = dataManager.getDataMap().get(CommonAction.BRAND_LIST);
 		}
 		return SUCCESS;
 	}

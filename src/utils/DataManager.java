@@ -22,8 +22,13 @@ public class DataManager {
 		return dataMap;
 	}
 	
-	public static void setDataMap(Map<String, List> dataMap) {
-		dataMap = dataMap;
+	public  void setDataMap(Map<String, List> dataMap) {
+		this.dataMap = dataMap;
+	}
+	
+	
+	public void updateData(String type, List list) {
+		dataMap.put(type, list);
 	}
 	
 }

@@ -26,6 +26,10 @@ public abstract class Service {
 		dao.save(o);
 	}
 	
+	public void delete(Object o) {
+		
+	}
+	
 	public abstract void saveAll(Object objList);
 	
 	public abstract List findBy(Object obj);

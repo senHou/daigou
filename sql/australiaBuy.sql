@@ -31,7 +31,7 @@ create table shipping(
 shipping_no varchar(20) not null primary key,
 shipping_date date not null,
 shipping_address varchar(100) not null,
-shipping_phoneNumber varchar(11) not null,
+shipping_phoneNumber long not null,
 shipping_company long not null,
 customer varchar(18) not null,
 CONSTRAINT  shipping_foreign_key foreign key(customer)
@@ -81,6 +81,8 @@ id int(8) not null auto_increment primary key,
 name varchar(20) not null
 );
 
+
+insert into brand (name) values('swisse');
 select * from brand;
 
 insert into customer (id,name) values('41272119887778542X','杨洋');
@@ -109,8 +111,7 @@ select * from brand;
 select * from item;
 select * from week_order_detail;
 select * from brand where name between 'a' and 'b';
-select * from shipping_company;
-
+delete from week_order_detail;
 
 insert into week_order_detail (week_no,year,item_id,quantity,create_date)
 values (17,2016,1,2,DATE_FORMAT(NOW(),'%Y-%m-%d'));

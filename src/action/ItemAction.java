@@ -1,17 +1,9 @@
 package action;
 
-import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
-
-import com.opensymphony.xwork2.ActionSupport;
-
 import factory.DaoFactory;
+import po.Brand;
 import po.Item;
 import service.ItemService;
 import service.Service;
@@ -21,9 +13,11 @@ public class ItemAction extends CommonAction{
 	
 	private Service service;
 	private String brandId;
-
+	private Item item;
+	private List<Brand> brandList;
 	
 	public ItemAction() {
+		super();
 		service = new ItemService(DaoFactory.ITEM);
 	}
 	
@@ -38,18 +32,20 @@ public class ItemAction extends CommonAction{
 	}
 
 	@Override
-	public void setServletResponse(HttpServletResponse arg0) {
-		this.response = arg0;
-	}
-
-	@Override
-	public void setServletRequest(HttpServletRequest arg0) {
-		this.request = arg0;
-	}
-
-	@Override
 	public String add() {
-		return null;
+
+		return SUCCESS;
+	}
+	
+	public String initAdd() {
+		if (dataManager.getDataMap().get(CommonAction.BRAND_LIST) != null) {
+			brandList = dataManager.getDataMap().get(CommonAction.BRAND_LIST);
+		}else {
+			brandList = service.getAll(Brand.class);
+			dataManager.getDataMap().put(CommonAction.BRAND_LIST, brandList);
+		}
+		 
+		return SUCCESS;
 	}
 
 	@Override
@@ -63,5 +59,21 @@ public class ItemAction extends CommonAction{
 	
 	public void setBrandId(String brandId) {
 		this.brandId = brandId;
+	}
+	
+	public Item getItem() {
+		return item;
+	}
+	
+	public void setItem(Item item) {
+		this.item = item;
+	}
+	
+	public List<Brand> getBrandList() {
+		return brandList;
+	}
+	
+	public void setBrandList(List<Brand> brandList) {
+		this.brandList = brandList;
 	}
 }

@@ -12,11 +12,12 @@ import factory.DaoFactory;
 
 public class BrandAction extends FileUploadAction{
 	
-	
 	private ExcelUpload uploadAction;
 	private Service service;
 	private Brand brand;
+	
 	public BrandAction() {
+		super();
 		service = new BrandService(DaoFactory.BRAND);
 		this.startRow = 0;
 	}

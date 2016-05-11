@@ -8,12 +8,18 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
-import com.opensymphony.xwork2.ActionSupport;
-
+import service.Service;
 import utils.DataManager;
+
+import com.opensymphony.xwork2.ActionSupport;
 
 public abstract class CommonAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
 
+	public final static String BRAND_LIST="brandList";
+	public final static String CUSTOMER_LIST="customerList";
+	public final static String SHIPPING_COMPANY_LIST="shippingCompanyList";
+	
+	
 	protected HttpServletResponse response;
 	protected HttpServletRequest request;
 	protected DataManager dataManager;
@@ -54,4 +60,5 @@ public abstract class CommonAction extends ActionSupport implements ServletReque
 			e.printStackTrace();
 		}
 	}
+	
 }

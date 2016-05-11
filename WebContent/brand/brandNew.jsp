@@ -22,7 +22,7 @@ $(document).ready(function(){
 		<jsp:include page="../header.jsp"/> 
 		<div class = "content">
 			<form id="brandId" method="post" action="addBrand">
-				<table id="addBrandTable">
+				<table id="addBrandTable" class="addTalbe">
 					<tr>
 						<td>Brand Name:</td>
 						<td><input type="text" value='<s:property value="name"/>' name="brand.name" /></td>

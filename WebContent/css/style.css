@@ -37,7 +37,7 @@ div{
 	width: 900px;
 }
 
-#addShippingTable,#addWeekOrderDetailTable,#addBrandTable,.uploadTable,#shippingDetailTable{
+.uploadTable,#shippingDetailTable,.addTalbe{
 	margin: 0 auto;
 	margin-top:20px;
 }

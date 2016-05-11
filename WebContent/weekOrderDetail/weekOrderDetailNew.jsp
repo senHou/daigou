@@ -20,7 +20,7 @@
 		<jsp:include page="../header.jsp"/> 
 		<div class = "content">
 			<form id="addWeekOrderDetailForm" name="addWeekOrderDetail" action="addWeekOrderDetail" method="post">
-				<table id="addWeekOrderDetailTable">
+				<table id="addWeekOrderDetailTable" class="addTalbe">
 					<tr>
 						<th class = "backgroundColor80ff00">Brand</th>
 						<th class = "backgroundColor80ff00">Item</th>
