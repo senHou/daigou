@@ -27,4 +27,10 @@ public class CustomerDao extends HibernateDao{
 		
 		return null;
 	}
+
+	@Override
+	public void update(Object object) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -17,4 +17,10 @@ public class ShippingDao extends HibernateDao {
 		List<ShippingDetail> shippings = (List<ShippingDetail>)query.list();
 		return shippings;
 	}
+
+	@Override
+	public void update(Object object) {
+		// TODO Auto-generated method stub
+		
+	}
 }

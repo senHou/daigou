@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Shipping {
+public class Shipping implements java.io.Serializable{
 
 	private String shippingNo;
 	private Date date;
@@ -94,12 +94,14 @@ public class Shipping {
 	public void setCost(double cost) {
 		this.cost = cost;
 	}
-	
 
 	@Override
 	public String toString() {
 		return "Shipping [shippingNo=" + shippingNo + ", date=" + date + ", customer=" + customer + ", phoneNumber="
-				+ phoneNumber + ", address=" + address + ", shippingCompany=" + shippingCompany + "]";
+				+ phoneNumber + ", address=" + address + ", shippingCompany=" + shippingCompany + ", cost=" + cost
+				+ ", shippingDetailSet=" + shippingDetailSet + "]";
 	}
+	
+	
 
 }

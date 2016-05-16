@@ -20,4 +20,9 @@ public class ShippingService extends Service{
 		return null;
 	}
 
+	@Override
+	public void update(Object obj) {
+		
+	}
+
 }

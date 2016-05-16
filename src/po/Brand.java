@@ -2,7 +2,7 @@ package po;
 
 import java.util.List;
 
-public class Brand {
+public class Brand implements java.io.Serializable{
 
 	private int id;
 	private String name;

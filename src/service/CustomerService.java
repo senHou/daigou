@@ -31,4 +31,10 @@ public class CustomerService extends Service{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+		
+	}
 }

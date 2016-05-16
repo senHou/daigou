@@ -20,4 +20,10 @@ public class ItemDao extends HibernateDao{
 		return itemList;
 	}
 
+	@Override
+	public void update(Object object) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

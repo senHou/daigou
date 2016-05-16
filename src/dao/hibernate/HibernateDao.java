@@ -27,7 +27,6 @@ public abstract class HibernateDao {
 	public void save(Object obj) throws DataAccessLayerException{
 		try {
 			startOperation();
-			System.out.println(obj);
 			session.saveOrUpdate(obj);
 			tx.commit();
 		} catch (Exception e) {
@@ -83,4 +82,5 @@ public abstract class HibernateDao {
 	}
 	
 	public abstract List findBy(Object object);
+	public abstract void update(Object object);
 }

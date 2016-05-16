@@ -14,6 +14,7 @@ import po.ShippingCompany;
 import po.ShippingDetail;
 import service.ItemService;
 import service.Service;
+import service.ShippingDetailService;
 import service.ShippingService;
 
 public class Testing {
@@ -57,10 +58,10 @@ public class Testing {
 	}
 	
 	public static void updateShippingDetail(){
-		Service service = new ShippingService(DaoFactory.SHIPPING_DETAIL);
-		ShippingDetail detail = new ShippingDetail("77000456978", new Item(1,new Brand(1,"swisse"),"蔓越莓"),120, 3);
-		detail.setId(4);
-		service.save(detail);
+		Service service = new ShippingDetailService(DaoFactory.SHIPPING_DETAIL);
+		ShippingDetail detail = new ShippingDetail("77000456978", new Item(3,new Brand(1,"swisse"),"月见草"),130, 3);
+		detail.setId(8);
+		service.update(detail);
 	}
 	
 	public static void testShipping(){

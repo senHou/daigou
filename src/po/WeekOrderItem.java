@@ -1,6 +1,6 @@
 package po;
 
-public class WeekOrderItem extends Item {
+public class WeekOrderItem extends Item implements java.io.Serializable{
 	private int weekNo;
 	private int year;
 	private int quantity;

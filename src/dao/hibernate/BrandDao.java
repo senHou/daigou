@@ -17,4 +17,10 @@ public class BrandDao extends HibernateDao{
 		List<Brand> brandList = query.list();
 		return brandList;
 	}
+
+	@Override
+	public void update(Object object) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -33,4 +33,10 @@ public class BrandService extends Service{
 		return dao.findBy(obj);
 	}
 
+	@Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -3,7 +3,7 @@ package po;
 import java.util.Arrays;
 import java.util.List;
 
-public class Customer {
+public class Customer implements java.io.Serializable{
 
 	private String id;
 	private String name;

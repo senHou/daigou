@@ -1,6 +1,6 @@
 package po;
 
-public class ShippingDetail {
+public class ShippingDetail  implements java.io.Serializable{
 	private int id;
 	private String shippingNo;
 	private Item item;

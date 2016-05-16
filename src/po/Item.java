@@ -1,6 +1,6 @@
 package po;
 
-public class Item {
+public class Item implements java.io.Serializable{
 	protected int id;
 	protected Brand brand;
 	protected String name;
