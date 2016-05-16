@@ -12,10 +12,10 @@ public class ShippingService extends Service{
 	@Override
 	public void saveAll(Object objList) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
+	// find shipping detail by shipping id
 	public List findBy(Object obj) {
 		return null;
 	}

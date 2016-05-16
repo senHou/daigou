@@ -56,7 +56,13 @@ public class ShippingAction extends CommonAction{
 	
 	public String add(){
 		try {
+			double totalCost = 0;
+			for (ShippingDetail detail : detailList) {
+				totalCost += detail.getSoldPrice() * detail.getQuantity();
+			}
+			
 			shipping.setDate(DateUtils.parseStringToDate(date, "yyyy/MM/dd"));
+			shipping.setCost(totalCost);
 			shipping.getShippingDetailSet().addAll(detailList);
 			service.save(shipping);
 			errorMessage = null;

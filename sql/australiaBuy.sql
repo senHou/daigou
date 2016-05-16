@@ -31,12 +31,14 @@ create table shipping(
 shipping_no varchar(20) not null primary key,
 shipping_date date not null,
 shipping_address varchar(100) not null,
-shipping_phoneNumber long not null,
+shipping_phoneNumber varchar(11) not null,
 shipping_company long not null,
 customer varchar(18) not null,
+shipping_cost double(8,2) not null,
 CONSTRAINT  shipping_foreign_key foreign key(customer)
 references customer(id) on delete cascade on update cascade
 );
+
 
 
 drop table if exists shipping_detail;

@@ -10,7 +10,7 @@ public class CustomerDao extends HibernateDao{
 
 	public CustomerDao(){}
 	
-	
+	// find customer's shipping info
 	public List<Shipping> getCustomerShippings(String customerId){
 		startOperation();
 		String hql = "from Shipping as s where s.customer.id = :customer_id";
@@ -22,8 +22,9 @@ public class CustomerDao extends HibernateDao{
 
 
 	@Override
+	
 	public List findBy(Object object) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 }

@@ -12,6 +12,7 @@ public class Shipping {
 	private String phoneNumber;
 	private String address;
 	private ShippingCompany shippingCompany;
+	private double cost;
 	private Set<ShippingDetail> shippingDetailSet = new HashSet<ShippingDetail>();
 	
 
@@ -19,7 +20,7 @@ public class Shipping {
 	}
 
 	public Shipping(String shippingNo, Date date, Customer customer, String phoneNumber, String address,
-			ShippingCompany shippingCompany) {
+			ShippingCompany shippingCompany, double cost) {
 		super();
 		this.shippingNo = shippingNo;
 		this.date = date;
@@ -27,6 +28,7 @@ public class Shipping {
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 		this.shippingCompany = shippingCompany;
+		this.cost = cost;
 	}
 
 	public String getShippingNo() {
@@ -84,6 +86,15 @@ public class Shipping {
 	public void setShippingDetailSet(Set<ShippingDetail> shippingDetailSet) {
 		this.shippingDetailSet = shippingDetailSet;
 	}
+	
+	public double getCost() {
+		return cost;
+	}
+	
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+	
 
 	@Override
 	public String toString() {
