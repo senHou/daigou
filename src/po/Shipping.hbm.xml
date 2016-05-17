@@ -12,6 +12,7 @@
 		<property name="address" type="string" column="shipping_address" />
 		<property name="phoneNumber" type="string" column="shipping_phoneNumber" />
 		<property name="cost" type="double" column="shipping_cost" />
+		<property name="agent" type="string" column="agent" />
 		<many-to-one name="customer" class="po.Customer" fetch="select" lazy = "false">
 			<column name="customer" not-null="true" />
 		</many-to-one>

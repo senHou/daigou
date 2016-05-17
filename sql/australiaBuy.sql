@@ -35,6 +35,7 @@ shipping_phoneNumber varchar(11) not null,
 shipping_company long not null,
 customer varchar(18) not null,
 shipping_cost double(8,2) not null,
+agent varchar(20),
 CONSTRAINT  shipping_foreign_key foreign key(customer)
 references customer(id) on delete cascade on update cascade
 );

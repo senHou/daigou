@@ -13,6 +13,7 @@ public class Shipping implements java.io.Serializable{
 	private String address;
 	private ShippingCompany shippingCompany;
 	private double cost;
+	private String agent;
 	private Set<ShippingDetail> shippingDetailSet = new HashSet<ShippingDetail>();
 	
 
@@ -20,7 +21,7 @@ public class Shipping implements java.io.Serializable{
 	}
 
 	public Shipping(String shippingNo, Date date, Customer customer, String phoneNumber, String address,
-			ShippingCompany shippingCompany, double cost) {
+			ShippingCompany shippingCompany, double cost, String agent) {
 		super();
 		this.shippingNo = shippingNo;
 		this.date = date;
@@ -29,6 +30,7 @@ public class Shipping implements java.io.Serializable{
 		this.address = address;
 		this.shippingCompany = shippingCompany;
 		this.cost = cost;
+		this.agent = agent;
 	}
 
 	public String getShippingNo() {
@@ -94,14 +96,19 @@ public class Shipping implements java.io.Serializable{
 	public void setCost(double cost) {
 		this.cost = cost;
 	}
+	
+	public String getAgent() {
+		return agent;
+	}
+	
+	public void setAgent(String agent) {
+		this.agent = agent;
+	}
 
 	@Override
 	public String toString() {
 		return "Shipping [shippingNo=" + shippingNo + ", date=" + date + ", customer=" + customer + ", phoneNumber="
 				+ phoneNumber + ", address=" + address + ", shippingCompany=" + shippingCompany + ", cost=" + cost
-				+ ", shippingDetailSet=" + shippingDetailSet + "]";
+				+ ", agent=" + agent + ", shippingDetailSet=" + shippingDetailSet + "]";
 	}
-	
-	
-
 }

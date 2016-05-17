@@ -143,7 +143,10 @@ function addNewCustomer(){
 						<td class="title">Post Address：</td>
 						<td><input type="text" name="shipping.address" size = "40" /></td>
 					</tr>
-					
+					<tr>
+						<td class="title">Agent</td>
+						<td><input type="text" name="shipping.agent" /></td>
+					</tr>
 				</table>
 				
 				<table id = "shippingDetailTable">
