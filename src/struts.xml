@@ -8,12 +8,22 @@
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
     <constant name="struts.devMode" value="true" />
 
-    <package name="default" namespace="/" extends="struts-default">
+    <package name="default" namespace="/" extends="jfreechart-default">
 
         <default-action-ref name="index" />
-
-        <action name="index">
-            <result>index.jsp</result>
+		
+		<action name="index">
+			<result>index.jsp</result>
+		</action>
+		
+        <action name="drawChart" class="action.ChartAction" method="drawChart">
+            <result name="success" type="chart">
+                <param name="value">chart</param>
+                <param name="type">jpeg</param>
+                <param name="width">600</param>
+                <param name="height">400</param>
+            </result>
+            
         </action>
         
         

@@ -11,7 +11,7 @@
 	<div class="contanier">
 		<jsp:include page="header.jsp"/> 
 		<div class = "content">
-			
+			<img src="drawChart"/>
 		</div>
 	</div>
 </body>

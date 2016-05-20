@@ -100,21 +100,21 @@ public class DateUtils {
 	public static List<Date> getPreviousMondayDate(int numOfWeek) {
 		List<Date> dates = new ArrayList<Date>();
 		Date date = new Date();
-		for (int i = numOfWeek; i > 1; i--) {
+		for (int i = numOfWeek-1; i > 0; i--) {
 			Date tmp = addDays(date, i * -7);
 			int weekNo = getWeekNo(tmp);
 			int year = getYear(tmp);
 			dates.add(getMondayDateByWeekNoAndYear(weekNo, year));
 		}
 
-		dates.add(getSundayDateByWeekNoAndYear(getWeekNo(date), getYear(date)));
+		dates.add(getMondayDateByWeekNoAndYear(getWeekNo(date), getYear(date)));
 		return dates;
 	}
 
 	public static List<Date> getPreviousSundayDate(int numOfWeek) {
 		List<Date> dates = new ArrayList<Date>();
 		Date date = new Date();
-		for (int i = numOfWeek; i > 1; i--) {
+		for (int i = numOfWeek-1; i > 0; i--) {
 			Date tmp = addDays(date, i * -7);
 			int weekNo = getWeekNo(tmp);
 			int year = getYear(tmp);
