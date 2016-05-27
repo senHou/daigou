@@ -5,14 +5,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import factory.DaoFactory;
+import dao.hibernate.CustomerDao;
+import dao.hibernate.HibernateDao;
+import dao.hibernate.ItemDao;
 import po.Brand;
 import po.Customer;
 import po.Item;
 import po.Shipping;
 import po.ShippingCompany;
 import po.ShippingDetail;
-import service.ItemService;
 import service.Service;
 import service.ShippingDetailService;
 import service.ShippingService;
@@ -48,24 +49,26 @@ public class Testing {
 //			action.setFileName("/Users/sen/Desktop/brand.xls");
 //			action.uploadFile();
 			
-			updateShippingDetail();
+			//updateShippingDetail();
 			//testShipping();
 			//testItem();
 			
+			//testCustomer();
+			testItem();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public static void updateShippingDetail(){
-		Service service = new ShippingDetailService(DaoFactory.SHIPPING_DETAIL);
+		Service service = new ShippingDetailService();
 		ShippingDetail detail = new ShippingDetail("77000456978", new Item(3,new Brand(1,"swisse"),"月见草"),130, 3);
 		detail.setId(8);
 		service.update(detail);
 	}
 	
 	public static void testShipping(){
-		Service service = new ShippingService(DaoFactory.SHIPPING);
+		Service service = new ShippingService();
 		
 		Shipping shipping = new Shipping();
 		Customer customer = new Customer("410105198711030135","侯森");
@@ -91,10 +94,18 @@ public class Testing {
 	
 	
 	public static void testItem(){
-		Service service = new ItemService(DaoFactory.ITEM);
-		List<Item> itemList = service.findBy("1");
+		HibernateDao dao = new ItemDao();
+		List<Item> itemList = dao.findAllOrderBy(Item.class, "id", "asc");
 		for (Item item : itemList) {
-			System.out.println(item.getId()+" "+item.getName());
+			System.out.println(item.getId());
+		}
+	}
+	
+	public static void testCustomer() {
+		CustomerDao dao = new CustomerDao();
+		List<Customer> customerList = dao.findAllOrderBy(Customer.class, "id", "asc");
+		for (Customer customer : customerList) {
+			System.out.println(customer.getId());
 		}
 	}
 }

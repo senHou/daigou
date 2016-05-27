@@ -19,7 +19,7 @@ public class ChartAction extends ActionSupport{
 	
 	public String drawChart(){
 		
-		ShippingService service = new ShippingService(DaoFactory.SHIPPING);
+		ShippingService service = new ShippingService();
 		List<Date> mondayDate = DateUtils.getPreviousMondayDate(5);
 		List<Date> sundayDate = DateUtils.getPreviousSundayDate(5);
 		double[][] data = service.getShippingAmountByWeek(mondayDate, sundayDate, 5);

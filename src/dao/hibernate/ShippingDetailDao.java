@@ -9,14 +9,7 @@ import po.ShippingDetail;
 import utils.HibernateUtil;
 
 public class ShippingDetailDao extends HibernateDao {
-
-	@Override
-	public List findBy(Object object) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
+	
 	public void update(Object object) {
 		ShippingDetail shippingDetail = (ShippingDetail) find(ShippingDetail.class, ((ShippingDetail) object).getId());
 

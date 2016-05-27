@@ -2,26 +2,26 @@ package service;
 
 import java.util.List;
 
+import dao.hibernate.ItemDao;
+import factory.DaoFactory;
+import po.Item;
+
 public class ItemService extends Service{
 
-	public ItemService(String type) {
-		super(type);
+	public ItemService() {
+		super(DaoFactory.ITEM);
 	}
 
 	@Override
-	public void saveAll(Object objList) {
+	public void saveAll(List objList) {
 		
 	}
 
-	@Override
-	//find item by brand
-	public List findBy(Object obj) {
-		return dao.findBy(obj);
+	public List findByBrandId(Object obj) {
+		return ((ItemDao) dao).findByBrandId(obj);
 	}
-
-	@Override
-	public void update(Object obj) {
-		
+	
+	public Item getItemByBrandIdAandItemName(int brandId, String itemName) {
+		return ((ItemDao) dao).getItemByBrandIdAandItemName(brandId, itemName);
 	}
-
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import excel.CustomerExcelUpload;
 import excel.ExcelUpload;
+import exception.DataAccessLayerException;
 import factory.DaoFactory;
 import po.Customer;
 import po.Shipping;
@@ -18,7 +19,7 @@ public class CustomerAction extends FileUploadAction{
 	
 	public CustomerAction(){
 		super();
-		service = new CustomerService(DaoFactory.CUSTOMER);
+		service = new CustomerService();
 		this.startRow = 0;
 	}
 	
@@ -33,22 +34,33 @@ public class CustomerAction extends FileUploadAction{
 
 
 	@Override
-	public void uploadFile() {
+	public String uploadFile() {
 		try{
 			File file = new File(getFileName());
 			uploadAction = new CustomerExcelUpload(file);
 			List<Customer> customerList = (List<Customer>)uploadAction.upload(sheetIdx, startRow);
 			service.saveAll(customerList);
+			setErrorMessage(null);
+			return SUCCESS;
 		}catch(Exception e) {
 			e.printStackTrace();
+			setErrorMessage("upload customer error");
+			return ERROR;
 		}
 	}
 
 
 	@Override
 	public String add() {
-		service.save(customer);
-		return SUCCESS;
+		try {
+			service.save(customer);
+			setErrorMessage(null);
+			return SUCCESS;
+		}catch(DataAccessLayerException e) {
+			setErrorMessage("Add customer error");
+			return ERROR;
+		}
+		
 	}
 
 
@@ -64,5 +76,12 @@ public class CustomerAction extends FileUploadAction{
 	
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+
+	@Override
+	public String list() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

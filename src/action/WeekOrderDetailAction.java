@@ -21,7 +21,7 @@ public class WeekOrderDetailAction extends CommonAction {
 	
 	public WeekOrderDetailAction(){
 		super();
-		service = new WeekOrderDetailService(DaoFactory.WEEK_ORDER_DETAIL);
+		service = new WeekOrderDetailService();
 	}
 
 	public String saveWeekOrderDetail() {
@@ -60,6 +60,12 @@ public class WeekOrderDetailAction extends CommonAction {
 
 	@Override
 	public String edit() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String list() {
 		// TODO Auto-generated method stub
 		return null;
 	}

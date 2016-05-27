@@ -38,7 +38,7 @@ public abstract class FileUploadAction extends CommonAction {
 		this.startRow = startRow;
 	}
 
-	public abstract void uploadFile();
+	public abstract String uploadFile();
 	
 	public  String initFile(){
 		return SUCCESS;

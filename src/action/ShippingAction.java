@@ -19,14 +19,14 @@ public class ShippingAction extends CommonAction{
 	private Service service;
 	private List shippingList;
 	private Shipping shipping;
-	private String errorMessage;
+	
 	private List brandList;
 	private String date;
 	private List<ShippingDetail> detailList; 
 	
 	public ShippingAction(){
 		super();
-		service = new ShippingService(DaoFactory.SHIPPING);		
+		service = new ShippingService();		
 	}
 	
 	public String initAdd(){
@@ -110,14 +110,6 @@ public class ShippingAction extends CommonAction{
 	public void setShippingList(List shippingList) {
 		this.shippingList = shippingList;
 	}
-	
-	public String getErrorMessage() {
-		return errorMessage;
-	}
-	
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
-	}
 
 	public List<Brand> getBrandList() {
 		return brandList;
@@ -147,5 +139,11 @@ public class ShippingAction extends CommonAction{
 	
 	public void setDetailList(List<ShippingDetail> detailList) {
 		this.detailList = detailList;
+	}
+
+	@Override
+	public String list() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

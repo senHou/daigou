@@ -1,42 +1,35 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.xmlbeans.impl.xb.ltgfmt.Code.Factory;
-
-import dao.hibernate.HibernateDao;
+import dao.hibernate.BrandDao;
+import factory.DaoFactory;
 import po.Brand;
 
 public class BrandService extends Service{
 	
-	public BrandService(String type) {
-		super(type);
+	public BrandService() {
+		super(DaoFactory.BRAND);
 	}
 	
 	@Override
-	public void saveAll(Object objList) {
+	public void saveAll(List objList) {
 		List<Brand> brandList = (List<Brand>)objList;
-		
+		List<Brand> newList = new ArrayList<Brand>();
 		for (Brand brand : brandList) {
-			List<Brand> tmp = findBy(brand.getName());
+			List<Brand> tmp = findByName(brand.getName());
 			
 			if (tmp != null && tmp.size() > 0) {
-				//do noting
 			}else {
-				save(brand);
+				newList.add(brand);
 			}
 		}
-	}
-
-	@Override
-	public List findBy(Object obj) {
-		return dao.findBy(obj);
-	}
-
-	@Override
-	public void update(Object obj) {
-		// TODO Auto-generated method stub
 		
+		super.saveAll(newList);
 	}
 
+	public List findByName(String name) {
+		return ((BrandDao)dao).findByName(name);
+	}
 }

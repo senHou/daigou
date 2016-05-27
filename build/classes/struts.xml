@@ -5,105 +5,147 @@
 
 <struts>
 
-    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
-    <constant name="struts.devMode" value="true" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
 
-    <package name="default" namespace="/" extends="jfreechart-default">
+	<package name="default" namespace="/" extends="jfreechart-default">
 
-        <default-action-ref name="index" />
-		
-		<action name="index">
-			<result>index.jsp</result>
+		<interceptors>
+			<interceptor name="authentication"
+				class="interceptor.AuthenticationInterceptor"></interceptor>
+			<interceptor-stack name="authStack">
+				<interceptor-ref name="authentication"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="authStack"></default-interceptor-ref>
+		<default-action-ref name="login" />
+
+		<global-results>
+			<result name="login" type="redirect">/home.action</result>
+		</global-results>
+
+		<action name="home">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result>/login.jsp</result>
 		</action>
-		
-        <action name="drawChart" class="action.ChartAction" method="drawChart">
-            <result name="success" type="chart">
-                <param name="value">chart</param>
-                <param name="type">jpeg</param>
-                <param name="width">600</param>
-                <param name="height">400</param>
-            </result>
-            
-        </action>
-        
-        
-        <action name="printItemOptions" class="action.ItemAction" method="printOptions">
-        </action>
-        
-        <action name="initAddItem" class="action.ItemAction" method="initAdd">
-        	<result name="success">/item/itemNew.jsp</result>
-        	<result name="error">error.jsp</result>				   
-        </action>
-        
-       	<action name="addItem" class="action.ItemAction" method="add">
-        	<result name="success">/item/itemNew.jsp</result>
-        	<result name="error" type="redirectAction">
-        		<param name="actionName">initAddItem</param>
-         		<param name="errorMessage">Add Shipping Error</param>
-        	</result>				   
-        </action>
-        
-        <action name="initAddShipping" class="action.ShippingAction" method="initAdd">
-        	<result name="success">/shipping/shippingNew.jsp</result>
-        	<result name="error">error.jsp</result>				   
-        </action>
-        
-       	<action name="addShipping" class="action.ShippingAction" method="add">
-        	<result name="success">/shipping/shippingNew.jsp</result>
-        	<result name="error" type="redirectAction">
-        		<param name="actionName">initAddShipping</param>
-         		<param name="errorMessage">Add Shipping Error</param>
-        	</result>				   
-        </action>
-        
-        <action name="shippingDisplay" class="action.ShippingAction" method="display">
-        	<result name="success">/shipping/display.jsp</result>
-        	<result name="error">error.jsp</result>	
-        </action>
-        
-        <action name="initAddWeekOrderDetail" class = "action.WeekOrderDetailAction" method="initAdd">
-        	<result>/weekOrderDetail/weekOrderDetailNew.jsp</result>
-        </action>
-         <action name="addWeekOrderDetail" class = "action.WeekOrderDetailAction" method="add">
-        	<result name="success">/weekOrderDetail/weekOrderDetail.jsp</result>
-        	<result name="error">/weekOrderDetail/weekOrderDetailNew.jsp</result>
-        </action>
-        
-        <action name="initAddBrand" class = "action.BrandAction" method="initAdd">
-        	<result>/brand/brandNew.jsp</result>
-        </action>
-        
-        <action name="addBrand" class = "action.BrandAction" method="add">
-        	<result name="success">/brand/brandNew.jsp</result>
-        	<result name="error">/brand/brandNew.jsp</result>
-        </action>
-        
-        <action name="initUploadBrandFile" class="action.BrandAction" method="initFile">
-        	<result>/brand/upload.jsp</result>
-        </action>
-        
-        <action name="uploadBrandFile" class = "action.BrandAction" method="uploadFile">
-        </action>
-        
-        
-        
-        <action name="initAddCustomer" class = "action.CustomerAction" method="initAdd">
-        	<result>/customer/customerNew.jsp</result>
-        </action>
-        
-        <action name="addCustomer" class = "action.CustomerAction" method="add">
-        	<result name="success">/customer/customerNew.jsp</result>
-        	<result name="error">/customer/customerNew.jsp</result>
-        </action>
-        <action name="initUploadCustomerFile" class="action.CustomerAction" method="initFile">
-        	<result>/customer/upload.jsp</result>
-        </action>
-        <action name="uploadCustomerFile" class = "action.CustomerAction" method="uploadFile" >
-        </action>
-        
-    </package>
+
+		<action name="login" class="action.LoginAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">/index.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+
+		<action name="drawChart" class="action.ChartAction" method="drawChart">
+			<result name="success" type="chart">
+				<param name="value">chart</param>
+				<param name="type">jpeg</param>
+				<param name="width">600</param>
+				<param name="height">400</param>
+			</result>
+
+		</action>
 
 
-    <!-- Add packages here -->
+		<action name="printItemOptions" class="action.ItemAction"
+			method="printOptions">
+		</action>
+
+		<action name="initAddItem" class="action.ItemAction" method="initAdd">
+			<result name="success">/item/itemNew.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+
+		<action name="addItem" class="action.ItemAction" method="add">
+			<result name="success">/item/itemNew.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">initAddItem</param>
+				<param name="errorMessage">${errorMessage}</param>
+			</result>
+		</action>
+
+		<action name="listItem" class="action.ItemAction" method="list">
+			<result name="success">/item/itemList.jsp</result>
+			<result name="error">/item/itemList.jsp</result>
+		</action>
+
+		<action name="initAddShipping" class="action.ShippingAction"
+			method="initAdd">
+			<result name="success">/shipping/shippingNew.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+
+		<action name="addShipping" class="action.ShippingAction"
+			method="add">
+			<result name="success">/shipping/shippingNew.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">initAddShipping</param>
+				<param name="errorMessage">Add Shipping Error</param>
+			</result>
+		</action>
+
+		<action name="shippingDisplay" class="action.ShippingAction"
+			method="display">
+			<result name="success">/shipping/display.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+
+		<action name="initAddWeekOrderDetail" class="action.WeekOrderDetailAction"
+			method="initAdd">
+			<result>/weekOrderDetail/weekOrderDetailNew.jsp</result>
+		</action>
+		<action name="addWeekOrderDetail" class="action.WeekOrderDetailAction"
+			method="add">
+			<result name="success">/weekOrderDetail/weekOrderDetail.jsp</result>
+			<result name="error">/weekOrderDetail/weekOrderDetailNew.jsp</result>
+		</action>
+
+		<action name="initAddBrand" class="action.BrandAction" method="initAdd">
+			<result>/brand/brandNew.jsp</result>
+		</action>
+
+		<action name="addBrand" class="action.BrandAction" method="add">
+			<result name="success">/brand/brandNew.jsp</result>
+			<result name="error">/brand/brandNew.jsp</result>
+		</action>
+
+		<action name="initUploadBrandFile" class="action.BrandAction"
+			method="initFile">
+			<result>/brand/upload.jsp</result>
+		</action>
+
+		<action name="uploadBrandFile" class="action.BrandAction"
+			method="uploadFile">
+			<result name="success">/brand/upload.jsp</result>
+			<result name="error">/brand/upload.jsp</result>
+		</action>
+
+
+
+		<action name="initAddCustomer" class="action.CustomerAction"
+			method="initAdd">
+			<result>/customer/customerNew.jsp</result>
+		</action>
+
+		<action name="addCustomer" class="action.CustomerAction"
+			method="add">
+			<result name="success">/customer/customerNew.jsp</result>
+			<result name="error">/customer/customerNew.jsp</result>
+		</action>
+		<action name="initUploadCustomerFile" class="action.CustomerAction"
+			method="initFile">
+			<result>/customer/upload.jsp</result>
+		</action>
+		<action name="uploadCustomerFile" class="action.CustomerAction"
+			method="uploadFile">
+			<result name="success">/customer/upload.jsp</result>
+			<result name="error">/customer/upload.jsp</result>
+		</action>
+
+	</package>
+
+
+	<!-- Add packages here -->
 
 </struts>

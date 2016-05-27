@@ -37,7 +37,7 @@ div{
 	width: 900px;
 }
 
-.uploadTable,#shippingDetailTable,.addTalbe{
+.uploadTable,#shippingDetailTable,.addTalbe,.listTalbe,.searchPanel,.searchTable{
 	margin: 0 auto;
 	margin-top:20px;
 }
@@ -54,6 +54,10 @@ div{
 	color:red;
 }
 
+.success{
+	color:green;
+}
+
 table{
 	
 }
@@ -68,7 +72,11 @@ th{
 	background-color:#80ff00;
 }
 
+.even {
+	background-color:#80ff00;
+	color: white;
+}
+
 select{
 	width:150px;
-}
 }

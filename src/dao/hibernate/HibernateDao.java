@@ -14,7 +14,7 @@ import po.Customer;
 import exception.DataAccessLayerException;
 import utils.HibernateUtil;
 
-public abstract class HibernateDao {
+public  class HibernateDao {
 
 	protected Session session;
 	protected Transaction tx;
@@ -35,14 +35,13 @@ public abstract class HibernateDao {
 			HibernateUtil.close(session);
 		}
 	}
-
+	
 	public List findAll(Class clazz) {
 		List objects = null;
 		try {
 			startOperation();
 			Query query = session.createQuery("from " + clazz.getName());
 			objects = query.list();
-			tx.commit();
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -68,6 +67,7 @@ public abstract class HibernateDao {
 		try {
 			startOperation();
 			session.delete(object);
+			tx.commit();
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -81,6 +81,50 @@ public abstract class HibernateDao {
 		throw new DataAccessLayerException(e);
 	}
 	
-	public abstract List findBy(Object object);
-	public abstract void update(Object object);
+	
+	public  List findAllOrderBy(Class clazz, Object obj, String type) {
+		List list = null;
+		
+		try {
+			startOperation();
+			String hql = "from "+clazz.getName()+" order by "+String.valueOf(obj)+" "+type;
+			Query query = session.createQuery(hql);
+			list = query.list();
+		}catch(Exception e) {
+			handleException(e);
+		}finally {
+			HibernateUtil.close(session);
+		}
+		return list;
+	}
+	
+	public void saveAll(List list) {
+		try {
+			startOperation();
+			for (int i = 0; i < list.size(); i ++) {
+				session.save(list.get(i));
+				if( i % 50 == 0 ) { 
+			        session.flush();
+			        session.clear();
+			    }
+			}
+			tx.commit();
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			HibernateUtil.close(session);
+		}
+	}
+	
+	public void update(Object object) {
+		try {
+			startOperation();
+			session.update(object);
+			tx.commit();
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			HibernateUtil.close(session);
+		}
+	}
 }

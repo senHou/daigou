@@ -2,24 +2,13 @@ package service;
 
 import java.util.List;
 
+import factory.DaoFactory;
 import po.ShippingDetail;
 
 public class ShippingDetailService extends Service{
 
-	public ShippingDetailService(String type) {
-		super(type);
-	}
-
-	@Override
-	public void saveAll(Object objList) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List findBy(Object obj) {
-		// TODO Auto-generated method stub
-		return null;
+	public ShippingDetailService() {
+		super(DaoFactory.SHIPPING_DETAIL);
 	}
 
 	@Override

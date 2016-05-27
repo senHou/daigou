@@ -1,15 +1,17 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dao.hibernate.CustomerDao;
+import factory.DaoFactory;
 import po.Customer;
 import po.Shipping;
 
 public class CustomerService extends Service{
 	
-	public CustomerService(String type) {
-		super(type);
+	public CustomerService() {
+		super(DaoFactory.CUSTOMER);
 	}
 	
 	public List<Shipping> getCustomerShippings(String customerId) {
@@ -17,24 +19,15 @@ public class CustomerService extends Service{
 	}
 
 	@Override
-	public void saveAll(Object objList) {
+	public void saveAll(List objList) {
 		List<Customer> customerList = (List<Customer>)objList;
+		List<Customer> newList = new ArrayList<Customer>();
 		for (Customer customer : customerList) {
 			if (get(Customer.class, customer.getId()) == null) {
-				save(customer);
+				newList.add(customer);
 			}
 		}
-	}
-
-	@Override
-	public List findBy(Object obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void update(Object obj) {
-		// TODO Auto-generated method stub
 		
+		super.saveAll(newList);
 	}
 }

@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.hibernate.WeekOrderDetailDao;
+import factory.DaoFactory;
 import po.WeekOrderDetail;
 
 public class WeekOrderDetailService extends Service{
 	
 	WeekOrderDetailDao orderDao;
 	
-	public WeekOrderDetailService(String type) {
-		super(type);
+	public WeekOrderDetailService() {
+		super(DaoFactory.WEEK_ORDER_DETAIL);
 		orderDao = (WeekOrderDetailDao)dao;
 	}
 	
@@ -20,7 +21,7 @@ public class WeekOrderDetailService extends Service{
 	}
 
 	@Override
-	public void saveAll(Object objList) {
+	public void saveAll(List objList) {
 		List<WeekOrderDetail> weekOrderDetailList = (List<WeekOrderDetail>)objList;
 		for (WeekOrderDetail weekOrderDetail : weekOrderDetailList) {
 			WeekOrderDetail tmp = (WeekOrderDetail)get(WeekOrderDetail.class,weekOrderDetail);
@@ -32,18 +33,5 @@ public class WeekOrderDetailService extends Service{
 				updateQuantity(weekOrderDetail);
 			}
 		}
-
-	}
-
-	@Override
-	public List findBy(Object obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void update(Object obj) {
-		// TODO Auto-generated method stub
-		
 	}
 }
