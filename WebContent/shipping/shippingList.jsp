@@ -15,14 +15,14 @@ $(document).ready(function() {
 
 });
 </script>
+			
 	<div class="gigantic pagination">
-		<li>
-			<ol> <a href="#" class="first" data-action="first">&laquo;</a></ol>
-			<ol> <a href="#" class="previous" data-action="previous">&lsaquo;</a></ol>
-			<ol> <input type="text" readonly="readonly" /></ol>
-			<ol> <a href="#" class="next" data-action="next">&rsaquo;</a></ol>
-			<ol> <a href="#" class="next" data-action="last">&raquo;</a></ol>
-		</li> 
+	    <a href="#" class="first" data-action="first">&laquo;</a>
+	    <a href="#" class="previous" data-action="previous">&lsaquo;</a>
+	    <input type="text" readonly="readonly" />
+	    <a href="#" class="next" data-action="next">&rsaquo;</a>
+	    <a href="#" class="last" data-action="last">&raquo;</a>
 	</div>
+			
 
 <jsp:include page="../footer.jsp"/>

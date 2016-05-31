@@ -29,12 +29,14 @@ div{
 
 .contanier {
 	width: 80%;
+	overflow: auto;
 }
 
 .content {
 
 	margin-top:20px;
 	width: 900px;
+	overflow: auto;
 }
 
 .uploadTable,#shippingDetailTable,.addTalbe,.listTalbe,.searchPanel,.searchTable{

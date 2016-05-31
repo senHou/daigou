@@ -1,16 +1,18 @@
 .pagination {
-	width:900px;
-  	border: 1px solid #CDCDCD;
-  	border-radius: 3px; 
-  	margin: 0 auto;
-  	margin-top:30px;
-  
+  border: 1px solid #CDCDCD;
+  border-radius: 3px; 
+  margin: 30px auto;
+  width:800px;
+  overflow: auto;
+  text-align: center;
 }
 
 .pagination a {
   float: left;
-  width: 20px;
-  height: 20px;
+  height: 30px;
+  width: 30px;
+  font-size: 30px;
+  line-height: 25px; 
   border-right: 1px solid #CDCDCD;
   border-left: 1px solid #CDCDCD;
   color: #ffffff;
@@ -43,21 +45,11 @@
 
 .pagination a:first-child {
   border: none;
-  border-radius: 2px 0 0 2px; }
+  border-radius: 2px 0 0 2px; 
+  margin-left: 130px;
+  }
 
-.pagination a:last-child {
-  border: none;
-  border-radius: 0 2px 2px 0; }
-  
-.pagination li {
-	list-style: none;
-	height: 30px;
-	width:900px;
-}
 
-.pagination li ol {
-	display:inline;
-}
 
 .pagination input {
   float: left;
@@ -69,10 +61,3 @@
   vertical-align: middle;
   text-align: center; 
   font-size: 15px; }
-
-.gigantic.pagination a {
-  height: 30px;
-  width: 30px;
-  font-size: 30px;
-  line-height: 25px; }
-
