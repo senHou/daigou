@@ -1,13 +1,16 @@
 package test;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import action.ShippingAction;
 import dao.hibernate.CustomerDao;
 import dao.hibernate.HibernateDao;
 import dao.hibernate.ItemDao;
+import dao.hibernate.ShippingDao;
 import po.Brand;
 import po.Customer;
 import po.Item;
@@ -54,7 +57,10 @@ public class Testing {
 			//testItem();
 			
 			//testCustomer();
-			testItem();
+			//testItem();
+			
+			//testFindTotalNumber(Shipping.class);
+			TestFindByPaging();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -107,5 +113,23 @@ public class Testing {
 		for (Customer customer : customerList) {
 			System.out.println(customer.getId());
 		}
+	}
+	
+	public static void testFindTotalNumber(Class clazz) {
+		HibernateDao dao = new HibernateDao();
+		Integer num = dao.findTotalRow(clazz);
+		System.out.println(num);
+	}
+	
+	public static void TestFindByPaging() {
+		ShippingDao dao = new ShippingDao();
+		Shipping shipping = new Shipping();
+		//shipping.setShippingNo("123456760");
+		shipping.setCustomer(new Customer(null,"侯森"));
+		List<Shipping> list = dao.findByPaging(shipping, 1);
+		for (Shipping shipping2 : list) {
+			System.out.println(shipping2.getShippingNo());
+		}
+		
 	}
 }

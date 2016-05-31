@@ -5,8 +5,10 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/jqpagination.css">
 <link rel="stylesheet" type="text/css" href="js/jquery-ui.css">
 <script src="js/jquery-1.12.3.js"></script>
+<script src="js/jquery.jqpagination.min.js"></script>
 <script src="js/jquery-ui.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>

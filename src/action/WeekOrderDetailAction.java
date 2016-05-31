@@ -70,4 +70,10 @@ public class WeekOrderDetailAction extends CommonAction {
 		return null;
 	}
 
+	@Override
+	public List listByPaging() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

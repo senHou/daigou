@@ -85,10 +85,10 @@
 			</result>
 		</action>
 
-		<action name="shippingDisplay" class="action.ShippingAction"
-			method="display">
-			<result name="success">/shipping/display.jsp</result>
-			<result name="error">error.jsp</result>
+		<action name="listShipping" class="action.ShippingAction"
+			method="list">
+			<result name="success">/shipping/shippingList.jsp</result>
+			<result name="error">/shipping/shippingList.jsp</result>
 		</action>
 
 		<action name="initAddWeekOrderDetail" class="action.WeekOrderDetailAction"

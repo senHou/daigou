@@ -63,4 +63,10 @@ public class BrandAction extends FileUploadAction{
 		return null;
 	}
 
+	@Override
+	public List listByPaging() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

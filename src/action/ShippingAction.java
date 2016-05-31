@@ -144,6 +144,12 @@ public class ShippingAction extends CommonAction{
 	@Override
 	public String list() {
 		// TODO Auto-generated method stub
+		return SUCCESS;
+	}
+
+	@Override
+	public List listByPaging() {
+		
 		return null;
 	}
 }

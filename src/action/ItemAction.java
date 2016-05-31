@@ -104,4 +104,10 @@ public class ItemAction extends CommonAction{
 		}
 		return SUCCESS;
 	}
+
+	@Override
+	public List listByPaging() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

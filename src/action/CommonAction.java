@@ -1,6 +1,7 @@
 package action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +15,6 @@ import com.opensymphony.xwork2.ModelDriven;
 import interceptor.UserAware;
 import po.Brand;
 import po.User;
-import service.BrandService;
 import service.Service;
 import utils.DataManager;
 
@@ -24,6 +24,8 @@ public abstract class CommonAction extends ActionSupport
 	public final static String BRAND_LIST = "brandList";
 	public final static String CUSTOMER_LIST = "customerList";
 	public final static String SHIPPING_COMPANY_LIST = "shippingCompanyList";
+	public final static int NUM_OF_ROW_PER_PAGE = 3;
+	
 
 	protected User user;
 
@@ -31,6 +33,8 @@ public abstract class CommonAction extends ActionSupport
 	protected HttpServletRequest request;
 	protected DataManager dataManager;
 	protected String errorMessage;
+	protected int pageNo;
+	
 	private String dataManagerType;
 
 	public CommonAction() {
@@ -60,12 +64,21 @@ public abstract class CommonAction extends ActionSupport
 	public void setDataManagerType(String dataManagerType) {
 		this.dataManagerType = dataManagerType;
 	}
+	
+	public int getPageNo() {
+		return pageNo;
+	}
+	
+	public void setPageNo(int pageNo) {
+		this.pageNo = pageNo;
+	}
 
 	public abstract String add();
 
 	public abstract String edit();
 
 	public abstract String list();
+	public abstract List listByPaging();
 
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
@@ -89,7 +102,7 @@ public abstract class CommonAction extends ActionSupport
 	}
 
 	public void updateDataManager() {
-		Service service = new BrandService();
+		Service service = new Service();
 		if (dataManagerType.equals("ALL")) {
 			dataManager.getDataMap().put(BRAND_LIST, service.getAll(Brand.class));
 		}

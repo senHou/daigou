@@ -1,17 +1,22 @@
 package dao.hibernate;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Query;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
+import action.CommonAction;
 import po.Shipping;
 import po.ShippingDetail;
-import utils.DateUtils;
 import utils.HibernateUtil;
+import utils.StringUtil;
 
 public class ShippingDao extends HibernateDao {
 
@@ -45,4 +50,42 @@ public class ShippingDao extends HibernateDao {
 		}
 	}
 
+	@Override
+	public List findByPaging(Object object, int pageNo) {
+		Shipping shipping = (Shipping)object;
+		List<Shipping> shippingList = new ArrayList<Shipping>();
+		try {
+			startOperation();
+			Criteria cr = session.createCriteria(Shipping.class,"shipping");
+			cr.createAlias("shipping.customer","customer");
+			
+			if (!StringUtil.isEmpty(shipping.getShippingNo())){
+				cr.add(Restrictions.eq("shippingNo", shipping.getShippingNo()));
+			}else {
+				cr.setFirstResult((pageNo - 1) * CommonAction.NUM_OF_ROW_PER_PAGE);
+			    cr.setMaxResults(CommonAction.NUM_OF_ROW_PER_PAGE);
+			}
+			
+			if (shipping.getDate() != null) {
+				cr.add(Restrictions.le("date", shipping.getDate()));
+			}
+			
+			if (!StringUtil.isEmpty(shipping.getCustomer().getName())) {
+				cr.add(Restrictions.like("customer.name", "%"+shipping.getCustomer().getName()+"%"));
+			}
+			
+			cr.addOrder(Order.desc("date"));
+			
+		    shippingList = cr.list();
+		    
+		}catch (Exception e) {
+			
+		}finally {
+			HibernateUtil.close(session);
+		}
+		
+		return shippingList;
+	}
+
+	
 }

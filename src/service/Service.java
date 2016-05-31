@@ -6,7 +6,7 @@ import dao.hibernate.HibernateDao;
 import exception.DataAccessLayerException;
 import factory.DaoFactory;
 
-public abstract class Service {
+public  class Service {
 
 	protected HibernateDao dao;
 
@@ -40,5 +40,13 @@ public abstract class Service {
 
 	public void update(Object obj) throws DataAccessLayerException {
 		dao.update(obj);
+	}
+	
+	public List findByPaging(Object object,int pageNo) {
+		return dao.findByPaging(object,pageNo);
+	}
+	
+	public int findTotalRow(Class clazz){
+		return dao.findTotalRow(clazz);
 	}
 }

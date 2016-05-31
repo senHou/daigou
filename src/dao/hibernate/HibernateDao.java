@@ -127,4 +127,25 @@ public  class HibernateDao {
 			HibernateUtil.close(session);
 		}
 	}
+	
+	public List findByPaging(Object object, int pageNo) {
+		return null;
+	}
+	
+	public Integer findTotalRow(Class clazz) {
+		
+		try {
+			startOperation();
+			String sql = "select count(*) from "+clazz.getName();
+			
+			Query query = session.createQuery(sql);
+			return Integer.parseInt(String.valueOf(query.list().get(0)));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			HibernateUtil.close(session);
+		}
+		
+		return null;
+	}
 }
