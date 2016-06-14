@@ -25,7 +25,6 @@ public abstract class CommonAction extends ActionSupport
 	public final static String CUSTOMER_LIST = "customerList";
 	public final static String SHIPPING_COMPANY_LIST = "shippingCompanyList";
 	public final static int NUM_OF_ROW_PER_PAGE = 3;
-	
 
 	protected User user;
 
@@ -33,7 +32,14 @@ public abstract class CommonAction extends ActionSupport
 	protected HttpServletRequest request;
 	protected DataManager dataManager;
 	protected String errorMessage;
-	protected int pageNo;
+	protected int pageNo = 1;
+	protected int maxPage;
+	
+	
+	protected List shippingCompanyList;
+	protected List customerList;
+	protected List brandList;
+	
 	
 	private String dataManagerType;
 
@@ -64,13 +70,21 @@ public abstract class CommonAction extends ActionSupport
 	public void setDataManagerType(String dataManagerType) {
 		this.dataManagerType = dataManagerType;
 	}
-	
+
 	public int getPageNo() {
 		return pageNo;
 	}
-	
+
 	public void setPageNo(int pageNo) {
 		this.pageNo = pageNo;
+	}
+
+	public int getMaxPage() {
+		return maxPage;
+	}
+
+	public void setMaxPage(int maxPage) {
+		this.maxPage = maxPage;
 	}
 
 	public abstract String add();
@@ -78,7 +92,8 @@ public abstract class CommonAction extends ActionSupport
 	public abstract String edit();
 
 	public abstract String list();
-	public abstract List listByPaging();
+	
+	public abstract void ajaxListByPage();
 
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
@@ -95,6 +110,7 @@ public abstract class CommonAction extends ActionSupport
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=utf-8");
 			response.setHeader("Cache-Control", "no-cache");
+			System.out.println(data);
 			response.getWriter().write(data);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -136,7 +152,32 @@ public abstract class CommonAction extends ActionSupport
 	public User getModel() {
 		return this.user;
 	}
+	
+	public List<Brand> getBrandList() {
+		return brandList;
+	}
 
+	public void setBrandList(List<Brand> brandList) {
+		this.brandList = brandList;
+	}
+	
+
+	public List getCustomerList() {
+		return customerList;
+	}
+
+	public void setCustomerList(List customerList) {
+		this.customerList = customerList;
+	}
+
+	public void setShippingCompanyList(List shippingCompanyList) {
+		this.shippingCompanyList = shippingCompanyList;
+	}
+
+	public List getShippingCompanyList() {
+		return shippingCompanyList;
+	}
+	
 	public static void main(String[] args) {
 		CommonAction action = new ItemAction();
 	}

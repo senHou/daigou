@@ -128,24 +128,11 @@ public  class HibernateDao {
 		}
 	}
 	
-	public List findByPaging(Object object, int pageNo) {
+	public List findByPaging(Object object, int pageNo) throws Exception{
 		return null;
 	}
 	
-	public Integer findTotalRow(Class clazz) {
-		
-		try {
-			startOperation();
-			String sql = "select count(*) from "+clazz.getName();
-			
-			Query query = session.createQuery(sql);
-			return Integer.parseInt(String.valueOf(query.list().get(0)));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			HibernateUtil.close(session);
-		}
-		
+	public  Integer findTotalRow(Object obj) throws Exception{
 		return null;
 	}
 }

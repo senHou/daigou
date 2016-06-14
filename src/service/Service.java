@@ -42,11 +42,11 @@ public  class Service {
 		dao.update(obj);
 	}
 	
-	public List findByPaging(Object object,int pageNo) {
+	public List findByPaging(Object object,int pageNo) throws Exception{
 		return dao.findByPaging(object,pageNo);
 	}
 	
-	public int findTotalRow(Class clazz){
-		return dao.findTotalRow(clazz);
+	public int findTotalRow(Object object) throws Exception{
+		return 0;
 	}
 }

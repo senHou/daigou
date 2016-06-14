@@ -1,12 +1,10 @@
 package test;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import action.ShippingAction;
 import dao.hibernate.CustomerDao;
 import dao.hibernate.HibernateDao;
 import dao.hibernate.ItemDao;
@@ -117,8 +115,15 @@ public class Testing {
 	
 	public static void testFindTotalNumber(Class clazz) {
 		HibernateDao dao = new HibernateDao();
-		Integer num = dao.findTotalRow(clazz);
-		System.out.println(num);
+		Integer num;
+		try {
+			num = dao.findTotalRow(clazz);
+			System.out.println(num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public static void TestFindByPaging() {
@@ -126,9 +131,13 @@ public class Testing {
 		Shipping shipping = new Shipping();
 		//shipping.setShippingNo("123456760");
 		shipping.setCustomer(new Customer(null,"侯森"));
+		try {
 		List<Shipping> list = dao.findByPaging(shipping, 1);
 		for (Shipping shipping2 : list) {
 			System.out.println(shipping2.getShippingNo());
+		}
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
 		
 	}

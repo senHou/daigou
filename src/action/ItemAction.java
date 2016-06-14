@@ -16,7 +16,6 @@ public class ItemAction extends CommonAction{
 	private ItemService service;
 	private String brandId;
 	private Item item;
-	private List<Brand> brandList;
 	private List<Item> itemList;
 	
 	public ItemAction() {
@@ -47,18 +46,9 @@ public class ItemAction extends CommonAction{
 	}
 	
 	public String initAdd() {
-		loadBrandList();
 		return SUCCESS;
 	}
 	
-	private void loadBrandList() {
-		if (dataManager.getDataMap().get(CommonAction.BRAND_LIST) != null) {
-			brandList = dataManager.getDataMap().get(CommonAction.BRAND_LIST);
-		}else {
-			brandList = service.getAll(Brand.class);
-			dataManager.getDataMap().put(CommonAction.BRAND_LIST, brandList);
-		}
-	}
 
 	@Override
 	public String edit() {
@@ -81,14 +71,6 @@ public class ItemAction extends CommonAction{
 		this.item = item;
 	}
 	
-	public List<Brand> getBrandList() {
-		return brandList;
-	}
-	
-	public void setBrandList(List<Brand> brandList) {
-		this.brandList = brandList;
-	}
-	
 	public List<Item> getItemList() {
 		return itemList;
 	}
@@ -96,7 +78,6 @@ public class ItemAction extends CommonAction{
 	@Override
 	public String list() {
 		itemList = new ArrayList<Item>();
-		loadBrandList();
 		if (StringUtil.isEmpty(brandId)) {
 			itemList = service.getAll(Item.class);
 		}else {
@@ -106,8 +87,9 @@ public class ItemAction extends CommonAction{
 	}
 
 	@Override
-	public List listByPaging() {
+	public void ajaxListByPage() {
 		// TODO Auto-generated method stub
-		return null;
 	}
+
+
 }

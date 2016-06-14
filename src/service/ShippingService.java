@@ -9,7 +9,6 @@ import utils.DateUtils;
 
 public class ShippingService extends Service{
 
-	
 	public ShippingService() {
 		super(DaoFactory.SHIPPING);
 	}
@@ -23,4 +22,15 @@ public class ShippingService extends Service{
 		return data;
 	}
 
+	public int findTotalRow(Object object) throws Exception{
+		return dao.findTotalRow(object);
+	}
+	
+	public List findShippingDetailByShippingNo(String shippingNo) {
+		if (shippingNo != null) {
+			return ((ShippingDao) dao).findShippingDetailByShippingNo(shippingNo);
+		}else {
+			return null;
+		}
+	}
 }

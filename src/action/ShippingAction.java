@@ -11,145 +11,161 @@ import po.ShippingDetail;
 import service.Service;
 import service.ShippingService;
 import utils.DateUtils;
+import utils.HtmlUtils;
+import utils.StringUtil;
 
-public class ShippingAction extends CommonAction{
-	
+public class ShippingAction extends CommonAction {
+
 	private List shippingCompanyList;
 	private List customerList;
+	private List brandList;
 	private Service service;
 	private List shippingList;
+	private List shippingDetailList;
 	private Shipping shipping;
+	private String customerName;
+	private String originShippingNo;
 	
-	private List brandList;
-	private String date;
-	private List<ShippingDetail> detailList; 
 	
-	public ShippingAction(){
+	private List<ShippingDetail> detailList;
+
+	public ShippingAction() {
 		super();
-		service = new ShippingService();		
+		service = new ShippingService();
 	}
-	
-	public String initAdd(){
-		
-		if (dataManager.getDataMap().get(CommonAction.SHIPPING_COMPANY_LIST) == null) {
-			shippingCompanyList = service.getAll(ShippingCompany.class);
-			dataManager.getDataMap().put(CommonAction.SHIPPING_COMPANY_LIST, shippingCompanyList);
-		}else {
-			shippingCompanyList = dataManager.getDataMap().get(CommonAction.SHIPPING_COMPANY_LIST);
-		}
-		
-		if (dataManager.getDataMap().get(CommonAction.CUSTOMER_LIST) == null) {
-			customerList = service.getAll(Customer.class);
-			dataManager.getDataMap().put(CommonAction.CUSTOMER_LIST, customerList);
-		}else {
-			customerList = dataManager.getDataMap().get(CommonAction.CUSTOMER_LIST);
-		}
-		
-		if (dataManager.getDataMap().get(CommonAction.BRAND_LIST) == null) {
-			brandList = service.getAll(Brand.class);
-			dataManager.getDataMap().put(CommonAction.BRAND_LIST, brandList);
-		}else {
-			brandList = dataManager.getDataMap().get(CommonAction.BRAND_LIST);
-		}
+
+	public String initAdd() {
 		return SUCCESS;
 	}
-	
-	public String add(){
+
+	public String add() {
 		try {
 			double totalCost = 0;
 			for (ShippingDetail detail : detailList) {
 				totalCost += detail.getSoldPrice() * detail.getQuantity();
 			}
-			
-			shipping.setDate(DateUtils.parseStringToDate(date, "yyyy/MM/dd"));
+
 			shipping.setCost(totalCost);
 			shipping.getShippingDetailSet().addAll(detailList);
 			service.save(shipping);
 			errorMessage = null;
 			return SUCCESS;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			errorMessage = "Add shipping error.";
 			e.printStackTrace();
 			return ERROR;
 		}
 	}
-	
-	public String display(){
+
+	public String display() {
 		shippingList = service.getAll(Shipping.class);
 		return SUCCESS;
 	}
 	
-	public void setShippingCompanyList(List shippingCompanyList) {
-		this.shippingCompanyList = shippingCompanyList;
+	public String initEdit(){
+		shipping = (Shipping)service.get(Shipping.class, shipping.getShippingNo().trim());
+		return SUCCESS;
+		
 	}
-	
-	public List getShippingCompanyList() {
-		return shippingCompanyList;
-	}
-	
+
 	public Shipping getShipping() {
 		return shipping;
 	}
-	
+
 	public void setShipping(Shipping shipping) {
 		this.shipping = shipping;
 	}
-	
-	public List getCustomerList() {
-		return customerList;
-	}
-	
-	public void setCustomerList(List customerList) {
-		this.customerList = customerList;
-	}
-	
+
+
 	public List getShippingList() {
 		return shippingList;
 	}
-	
+
 	public void setShippingList(List shippingList) {
 		this.shippingList = shippingList;
 	}
-
-	public List<Brand> getBrandList() {
-		return brandList;
-	}
-
-	public void setBrandList(List<Brand> brandList) {
-		this.brandList = brandList;
-	}
-
-	@Override
-	public String edit() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public String getOriginShippingNo() {
+		return originShippingNo;
 	}
 	
-	public String getDate() {
-		return date;
+	public void setOriginShippingNo(String originShippingNo) {
+		this.originShippingNo = originShippingNo;
 	}
-	
-	public void setDate(String date) {
-		this.date = date;
-	}
-	
+
+
+
 	public List<ShippingDetail> getDetailList() {
 		return detailList;
 	}
-	
+
 	public void setDetailList(List<ShippingDetail> detailList) {
 		this.detailList = detailList;
 	}
 
-	@Override
-	public String list() {
-		// TODO Auto-generated method stub
-		return SUCCESS;
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+	
+	public List getShippingDetailList() {
+		return shippingDetailList;
+	}
+	
+	public void setShippingDetailList(List shippingDetailList) {
+		this.shippingDetailList = shippingDetailList;
 	}
 
 	@Override
-	public List listByPaging() {
-		
+	public String list() {
+		try {
+			if (shipping == null) {
+				shipping = new Shipping();
+			}
+
+			int maxRow = service.findTotalRow(shipping);
+			maxPage = maxRow % NUM_OF_ROW_PER_PAGE == 0 ? maxRow / NUM_OF_ROW_PER_PAGE
+					: maxRow / NUM_OF_ROW_PER_PAGE + 1;
+
+			shippingList = service.findByPaging(shipping, pageNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
+		return SUCCESS;
+	}
+	
+	@Override
+	public String edit() {
 		return null;
+	}
+
+	@Override
+	public void ajaxListByPage() {
+		try {
+
+			if (shipping == null) {
+				shipping = new Shipping();
+			}
+			int maxRow = service.findTotalRow(shipping);
+
+			maxPage = maxRow % NUM_OF_ROW_PER_PAGE == 0 ? maxRow / NUM_OF_ROW_PER_PAGE
+					: maxRow / NUM_OF_ROW_PER_PAGE + 1;
+
+			shippingList = service.findByPaging(shipping, pageNo);
+
+			writeToHtml(HtmlUtils.generateShippingSearchResult(shippingList));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public String listDetail(){
+		shipping = (Shipping)service.get(Shipping.class, shipping.getShippingNo().trim());
+		shippingDetailList = ((ShippingService) service).findShippingDetailByShippingNo(shipping.getShippingNo());
+		return SUCCESS;
 	}
 }

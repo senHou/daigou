@@ -78,17 +78,29 @@
 
 		<action name="addShipping" class="action.ShippingAction"
 			method="add">
-			<result name="success">/shipping/shippingNew.jsp</result>
-			<result name="error" type="redirectAction">
-				<param name="actionName">initAddShipping</param>
-				<param name="errorMessage">Add Shipping Error</param>
+			<result name="success" type="redirectAction">
+				<param name="actionName">listShipping</param>
 			</result>
+			<result name="error">/shipping/shippingNew.jsp</result>
 		</action>
 
 		<action name="listShipping" class="action.ShippingAction"
 			method="list">
 			<result name="success">/shipping/shippingList.jsp</result>
 			<result name="error">/shipping/shippingList.jsp</result>
+		</action>
+		
+		<action name="listShippingDetail" class="action.ShippingAction"
+			method="listDetail">
+			<result name="success">/shipping/shippingDetailList.jsp</result>
+			<result name="error">/shipping/shippingDetailList.jsp</result>
+		</action>
+		
+		<action name="initShippingEdit" class = "action.ShippingAction" method="initEdit">
+			<result>/shipping/shippingEdit.jsp</result>
+		</action>
+		
+		<action name="ajaxListByPage" class = "action.ShippingAction" method="ajaxListByPage">
 		</action>
 
 		<action name="initAddWeekOrderDetail" class="action.WeekOrderDetailAction"

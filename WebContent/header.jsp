@@ -8,8 +8,17 @@
 <link rel="stylesheet" type="text/css" href="css/jqpagination.css">
 <link rel="stylesheet" type="text/css" href="js/jquery-ui.css">
 <script src="js/jquery-1.12.3.js"></script>
-<script src="js/jquery.jqpagination.min.js"></script>
+<script src="js/jquery.jqpagination.js"></script>
 <script src="js/jquery-ui.js"></script>
+<script>
+$(document).ready(function() {
+	$("#datepicker").datepicker({dateFormat: "yy/mm/dd"});
+});
+
+function redirect(url) {
+	location.href = url;
+}
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
@@ -21,7 +30,7 @@
 					<ol><a href="initAddItem">Item</a></ol>
 					<ol><a href="initAddBrand">Brand</a></ol>
 					<ol><a href="initAddCustomer">Customer</a></ol>
-					<ol><a href="initAddShipping">Shipping</a></ol>
+					<ol><a href="listShipping">Shipping</a></ol>
 					<ol><a href="initAddWeekOrderDetail">Weekly Order</a></ol>
 				</li>
 			</div>

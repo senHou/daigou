@@ -71,9 +71,8 @@ public class WeekOrderDetailAction extends CommonAction {
 	}
 
 	@Override
-	public List listByPaging() {
+	public void ajaxListByPage() {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
-
 }

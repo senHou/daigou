@@ -64,9 +64,8 @@ public class BrandAction extends FileUploadAction{
 	}
 
 	@Override
-	public List listByPaging() {
+	public void ajaxListByPage() {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
-
 }

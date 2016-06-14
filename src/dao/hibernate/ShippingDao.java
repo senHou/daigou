@@ -5,9 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.FetchMode;
 import org.hibernate.Query;
-import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -20,9 +18,9 @@ import utils.StringUtil;
 
 public class ShippingDao extends HibernateDao {
 
-	public List findByShippingNo(String shippingNo) {
+	public List findShippingDetailByShippingNo(String shippingNo) {
 		startOperation();
-		String hql = "from ShippingDetail as s where s.shipping_no = :shipping_no";
+		String hql = "from ShippingDetail as s where s.shippingNo = :shipping_no";
 		Query query = session.createQuery(hql);
 		query.setParameter("shipping_no", shippingNo);
 		List<ShippingDetail> shippings = (List<ShippingDetail>)query.list();
@@ -51,7 +49,7 @@ public class ShippingDao extends HibernateDao {
 	}
 
 	@Override
-	public List findByPaging(Object object, int pageNo) {
+	public List findByPaging(Object object, int pageNo) throws Exception{
 		Shipping shipping = (Shipping)object;
 		List<Shipping> shippingList = new ArrayList<Shipping>();
 		try {
@@ -70,7 +68,7 @@ public class ShippingDao extends HibernateDao {
 				cr.add(Restrictions.le("date", shipping.getDate()));
 			}
 			
-			if (!StringUtil.isEmpty(shipping.getCustomer().getName())) {
+			if (shipping.getCustomer() != null && !StringUtil.isEmpty(shipping.getCustomer().getName())) {
 				cr.add(Restrictions.like("customer.name", "%"+shipping.getCustomer().getName()+"%"));
 			}
 			
@@ -79,13 +77,40 @@ public class ShippingDao extends HibernateDao {
 		    shippingList = cr.list();
 		    
 		}catch (Exception e) {
-			
+			throw e;
 		}finally {
 			HibernateUtil.close(session);
 		}
 		
 		return shippingList;
 	}
-
+	
+	public  Integer findTotalRow(Object obj) throws Exception{
+		try {
+			Shipping shipping = (Shipping)obj;
+			startOperation();
+			Criteria cr = session.createCriteria(Shipping.class,"shipping").setProjection(Projections.rowCount());
+			cr.createAlias("shipping.customer","customer");
+			
+			if (!StringUtil.isEmpty(shipping.getShippingNo())){
+				cr.add(Restrictions.eq("shippingNo", shipping.getShippingNo()));
+			}
+			
+			if (shipping.getDate() != null) {
+				cr.add(Restrictions.le("date", shipping.getDate()));
+			}
+			
+			if (shipping.getCustomer() != null && !StringUtil.isEmpty(shipping.getCustomer().getName())) {
+				cr.add(Restrictions.like("customer.name", "%"+shipping.getCustomer().getName()+"%"));
+			}
+			return Integer.parseInt(String.valueOf(cr.list().get(0)));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			HibernateUtil.close(session);
+		}
+		return null;
+	}
+	
 	
 }

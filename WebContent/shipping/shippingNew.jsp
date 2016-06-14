@@ -82,7 +82,7 @@ function updateTrIndex() {
 	});
 }
 function addNewCustomer(){
-	location.href = "initAddCustomer";
+	redirect("initAddCustomer");
 	return false;
 }
 </script>
@@ -114,11 +114,11 @@ function addNewCustomer(){
 		</tr>
 		<tr>
 			<td class="title">Date:</td>
-			<td><input type="text" name="date"  id="datepicker"/></td>
+			<td><input type="text" name="shipping.date"  id="datepicker" value="<s:property value= 'shipping.date'/>" /></td>
 		</tr>
 		<tr>
 			<td class="title">Mobile：</td>
-			<td><input type="text" name="shipping.phoneNumber" /></td>
+			<td><input type="text" name="shipping.phoneNumber"  value="<s:property value= 'shipping.phoneNumber'/>"/></td>
 		</tr>
 		
 		<tr>
@@ -133,11 +133,11 @@ function addNewCustomer(){
 		</tr>
 		<tr>
 			<td class="title">Post Address：</td>
-			<td><input type="text" name="shipping.address" size = "40" /></td>
+			<td><input type="text" name="shipping.address" size = "40"  value="<s:property value= 'shipping.address'/>" /></td>
 		</tr>
 		<tr>
 			<td class="title">Agent</td>
-			<td><input type="text" name="shipping.agent" /></td>
+			<td><input type="text" name="shipping.agent" value="<s:property value= 'shipping.agent'/>" /></td>
 		</tr>
 	</table>
 	

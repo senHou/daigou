@@ -21,7 +21,6 @@ public class ShippingDetailService extends Service{
 		} else {
 			dao.update(object);
 		}
-		
 	}
 
 }

@@ -10,6 +10,10 @@ import java.util.List;
 
 public class DateUtils {
 
+	public final static int DASH = 0;
+	public final static int NONE = 1;
+	public final static int SLASH = 2;
+	
 	public static int getWeekNo(Date date) {
 		Calendar cal = Calendar.getInstance();
 		cal.setFirstDayOfWeek(Calendar.MONDAY);
