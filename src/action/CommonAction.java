@@ -36,21 +36,19 @@ public abstract class CommonAction extends ActionSupport
 	protected String errorMessage;
 	protected int pageNo = 1;
 	protected int maxPage;
-	
-	
+
 	protected List shippingCompanyList;
 	protected List customerList;
 	protected List brandList;
-	
-	
+
 	private String dataManagerType;
 
-	static{
+	static {
 		updateDataManager();
 	}
-	
+
 	public CommonAction() {
-		
+
 	}
 
 	public String initAdd() {
@@ -63,12 +61,12 @@ public abstract class CommonAction extends ActionSupport
 		return SUCCESS;
 	}
 
-	private void setList(){
+	private void setList() {
 		setBrandList(dataManager.getDataMap().get(BRAND_LIST));
 		setCustomerList(dataManager.getDataMap().get(CUSTOMER_LIST));
 		setShippingCompanyList(dataManager.getDataMap().get(SHIPPING_COMPANY_LIST));
 	}
-	
+
 	public String getErrorMessage() {
 		return errorMessage;
 	}
@@ -106,7 +104,7 @@ public abstract class CommonAction extends ActionSupport
 	public abstract String edit();
 
 	public abstract String list();
-	
+
 	public abstract void ajaxListByPage();
 
 	@Override
@@ -137,7 +135,9 @@ public abstract class CommonAction extends ActionSupport
 		dataManager.getDataMap().put(BRAND_LIST, service.getAll(Brand.class));
 		dataManager.getDataMap().put(SHIPPING_COMPANY_LIST, service.getAll(ShippingCompany.class));
 		dataManager.getDataMap().put(CUSTOMER_LIST, service.getAll(Customer.class));
+
 	}
+
 
 	@Override
 	public void setUser(User user) {
@@ -152,7 +152,7 @@ public abstract class CommonAction extends ActionSupport
 	public User getModel() {
 		return this.user;
 	}
-	
+
 	public List getBrandList() {
 		return brandList;
 	}
@@ -160,7 +160,6 @@ public abstract class CommonAction extends ActionSupport
 	public void setBrandList(List brandList) {
 		this.brandList = brandList;
 	}
-	
 
 	public List getCustomerList() {
 		return customerList;
@@ -176,9 +175,5 @@ public abstract class CommonAction extends ActionSupport
 
 	public List getShippingCompanyList() {
 		return shippingCompanyList;
-	}
-	
-	public static void main(String[] args) {
-		CommonAction action = new ItemAction();
 	}
 }

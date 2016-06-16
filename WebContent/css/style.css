@@ -32,17 +32,35 @@ div{
 	overflow: auto;
 }
 
-.content {
+.content{
 
 	margin-top:20px;
 	width: 100%;
 	overflow: auto;
 }
 
-.uploadTable,#shippingDetailTable,.addTalbe,.listTalbe,.searchPanel,.searchTable,.searchResultDiv,.editDiv,.editTable{
+.uploadTable,#shippingDetailTable,.addTalbe,
+.listTalbe,.searchPanel,.searchTable,.searchResultDiv,
+.editDiv,.editTable,.imageDiv,.center{
 	margin: 0 auto;
 	margin-top:20px;
+},
+
+.imageDiv{
+	text-align: center;
 }
+
+.imageDiv {
+	height:400px;
+	position:relative;
+}
+
+.imageDiv img {
+	position: absolute;	
+	left:50%;
+	margin-left:-300px;
+}
+
 
 #addShippingTable td{
 	border-bottom: 1px solid white;

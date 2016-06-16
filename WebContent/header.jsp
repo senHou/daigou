@@ -13,6 +13,20 @@
 <script>
 $(document).ready(function() {
 	$("#datepicker").datepicker({dateFormat: "yy/mm/dd"});
+	
+	$("#updateListButton").click(function(){
+		$.ajax({
+			url: "setList", 
+			data:"",
+			type:"post",
+			dataType:"text",
+			success: function(result){
+				alert("updated!");
+			}
+		});
+		
+		return false;
+	});
 });
 
 function redirect(url) {
@@ -32,6 +46,7 @@ function redirect(url) {
 					<ol><a href="initAddCustomer">Customer</a></ol>
 					<ol><a href="listShipping">Shipping</a></ol>
 					<ol><a href="initAddWeekOrderDetail">Weekly Order</a></ol>
+					<ol><a href="initUpdateDataList">Maintenance</a></ol>
 				</li>
 			</div>
 		</div>

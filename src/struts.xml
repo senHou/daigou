@@ -23,20 +23,20 @@
 		<default-action-ref name="login" />
 
 		<global-results>
-			<result name="login" type="redirect">/home.action</result>
+			<result name="login" type="redirect">/login.action</result>
 		</global-results>
 
-		<action name="home">
-			<interceptor-ref name="defaultStack"></interceptor-ref>
-			<result>/login.jsp</result>
-		</action>
+		
 
 		<action name="login" class="action.LoginAction">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success">/index.jsp</result>
 			<result name="input">/login.jsp</result>
 		</action>
-
+		
+		<action name="home">
+			<result>/index.jsp</result>
+		</action>
 		<action name="drawChart" class="action.ChartAction" method="drawChart">
 			<result name="success" type="chart">
 				<param name="value">chart</param>
@@ -108,6 +108,13 @@
 		</action>
 		
 		<action name="ajaxListByPage" class = "action.ShippingAction" method="ajaxListByPage">
+		</action>
+		
+		<action name="setList" class = "action.UpdateDataListAction" method="updateDataList">
+		</action>
+		
+		<action name="initUpdateDataList" class = "action.UpdateDataListAction" method="initUpdateDataList">
+			<result>/maintenance/updateDataList.jsp</result>
 		</action>
 		
 		<action name="initShippingDetailEdit" class="action.ShippingDetailAction" method="initEdit">

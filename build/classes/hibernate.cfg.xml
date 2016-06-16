@@ -28,7 +28,7 @@
         -->
         
         <!-- Database connection settings server -->
-        <!--<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+       <!-- <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
           <property name="connection.url">jdbc:mysql://198.38.82.101:3306/s3157015_daigou</property>
         <property name="connection.username">s3157015_shou</property>
         <property name="connection.password">shou123</property> -->
