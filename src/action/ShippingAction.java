@@ -16,10 +16,7 @@ import utils.StringUtil;
 
 public class ShippingAction extends CommonAction {
 
-	private List shippingCompanyList;
-	private List customerList;
-	private List brandList;
-	private Service service;
+	private ShippingService service;
 	private List shippingList;
 	private List shippingDetailList;
 	private Shipping shipping;
@@ -32,10 +29,6 @@ public class ShippingAction extends CommonAction {
 	public ShippingAction() {
 		super();
 		service = new ShippingService();
-	}
-
-	public String initAdd() {
-		return SUCCESS;
 	}
 
 	public String add() {
@@ -64,8 +57,7 @@ public class ShippingAction extends CommonAction {
 	
 	public String initEdit(){
 		shipping = (Shipping)service.get(Shipping.class, shipping.getShippingNo().trim());
-		return SUCCESS;
-		
+		return super.initEdit();
 	}
 
 	public Shipping getShipping() {
@@ -139,8 +131,14 @@ public class ShippingAction extends CommonAction {
 	}
 	
 	@Override
-	public String edit() {
-		return null;
+	public String edit(){
+		try {
+			service.update(shipping, !shipping.getShippingNo().equalsIgnoreCase(originShippingNo), originShippingNo);
+			return SUCCESS;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
 	}
 
 	@Override

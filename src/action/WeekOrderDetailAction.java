@@ -40,10 +40,6 @@ public class WeekOrderDetailAction extends CommonAction {
 		return brandList;
 	}
 
-	public void setBrandList(List<Brand> brandList) {
-		this.brandList = brandList;
-	}
-
 	public static Map<Integer, List<Item>> getItemMap() {
 		return itemMap;
 	}

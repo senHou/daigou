@@ -8,8 +8,9 @@ $(document).ready(function() {
 });
 </script>
 	<div class ="editDiv">
-		<form id = "editForm" class = "editForm" method="post" action ="edit">
+		<form id = "editForm" class = "editForm" method="post" action ="editShipping">
 			<input type="hidden" name="originShippingNo"  value="<s:property value="shipping.shippingNo" />" />
+			<input type="hidden" name="shipping.customer.id"  value="<s:property value="shipping.customer.id" />" />
 			<table class = "editTable"> 
 				<tr>
 					<td>Shipping No:</td>
@@ -44,7 +45,12 @@ $(document).ready(function() {
 					<td><select name="shipping.shippingCompany.id" >
 						<option value="">--Select--</option>
 						<s:iterator value="shippingCompanyList" id="list">
-							<option value = '<s:property value="#list.id" />'> <s:property value="#list.name" /></option>
+							<s:if test="%{shipping.shippingCompany.id == #list.id}">
+								<option value = '<s:property value="#list.id" />' selected="selected" > <s:property value="#list.name" /></option>
+							</s:if>
+							<s:else>
+								<option value = '<s:property value="#list.id" />'> <s:property value="#list.name" /></option>
+							</s:else>
 						</s:iterator>
 					</select>
 					</td>

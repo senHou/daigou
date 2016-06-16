@@ -33,4 +33,12 @@ public class ShippingService extends Service{
 			return null;
 		}
 	}
+	
+	public void update(Object object, boolean isShippingNoChanged, String oldShippingNo) {
+		if (!isShippingNoChanged) {
+			super.save(object);
+		} else {
+			((ShippingDao) dao).update(object,oldShippingNo);
+		}
+	}
 }

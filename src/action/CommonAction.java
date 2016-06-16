@@ -14,6 +14,8 @@ import com.opensymphony.xwork2.ModelDriven;
 
 import interceptor.UserAware;
 import po.Brand;
+import po.Customer;
+import po.ShippingCompany;
 import po.User;
 import service.Service;
 import utils.DataManager;
@@ -30,7 +32,7 @@ public abstract class CommonAction extends ActionSupport
 
 	protected HttpServletResponse response;
 	protected HttpServletRequest request;
-	protected DataManager dataManager;
+	protected static DataManager dataManager;
 	protected String errorMessage;
 	protected int pageNo = 1;
 	protected int maxPage;
@@ -43,18 +45,30 @@ public abstract class CommonAction extends ActionSupport
 	
 	private String dataManagerType;
 
+	static{
+		updateDataManager();
+	}
+	
 	public CommonAction() {
-		dataManager = DataManager.getInstance();
+		
 	}
 
 	public String initAdd() {
+		setList();
 		return SUCCESS;
 	}
 
 	public String initEdit() {
+		setList();
 		return SUCCESS;
 	}
 
+	private void setList(){
+		setBrandList(dataManager.getDataMap().get(BRAND_LIST));
+		setCustomerList(dataManager.getDataMap().get(CUSTOMER_LIST));
+		setShippingCompanyList(dataManager.getDataMap().get(SHIPPING_COMPANY_LIST));
+	}
+	
 	public String getErrorMessage() {
 		return errorMessage;
 	}
@@ -117,27 +131,13 @@ public abstract class CommonAction extends ActionSupport
 		}
 	}
 
-	public void updateDataManager() {
+	public static void updateDataManager() {
 		Service service = new Service();
-		if (dataManagerType.equals("ALL")) {
-			dataManager.getDataMap().put(BRAND_LIST, service.getAll(Brand.class));
-		}
+		dataManager = DataManager.getInstance();
+		dataManager.getDataMap().put(BRAND_LIST, service.getAll(Brand.class));
+		dataManager.getDataMap().put(SHIPPING_COMPANY_LIST, service.getAll(ShippingCompany.class));
+		dataManager.getDataMap().put(CUSTOMER_LIST, service.getAll(Customer.class));
 	}
-
-	// private void initService(){
-	// String className = this.getClass().getName();
-	//
-	// String serviceClassName =
-	// Service.class.getPackage().getName()+"."+className.substring(className.lastIndexOf(".")+1,className.lastIndexOf("Action"))+"Service"
-	// ;
-	// try {
-	// service = (Service)Class.forName(serviceClassName).newInstance();
-	// System.out.println(service.getClass().getName());
-	// }catch(Exception e){
-	// e.printStackTrace();
-	// }
-	//
-	// }
 
 	@Override
 	public void setUser(User user) {
@@ -153,11 +153,11 @@ public abstract class CommonAction extends ActionSupport
 		return this.user;
 	}
 	
-	public List<Brand> getBrandList() {
+	public List getBrandList() {
 		return brandList;
 	}
 
-	public void setBrandList(List<Brand> brandList) {
+	public void setBrandList(List brandList) {
 		this.brandList = brandList;
 	}
 	

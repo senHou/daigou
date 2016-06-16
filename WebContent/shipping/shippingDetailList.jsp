@@ -5,7 +5,13 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#shippingDetailTable").on("change",".options",function(){
-		alert("aaa");
+		$(".searchResultTable").on("change",".options",function(){
+			if ($(this).val() != "") {
+				var shippingNo = $(this).parent().parent().children(":first-child").text();
+				var url = $(this).val() + "?shipping.shippingNo="+shippingNo;
+				redirect(url);
+			}
+		});
 	});
 });
 </script>
@@ -56,8 +62,8 @@ $(document).ready(function() {
 					<td>
 						<select  class = "options" name="options">
 							<option value="">Option</option>
-							<option value="">Edit</option>
-							<option value="">Delete</option>
+							<option value="initShippingDetailEdit">Edit</option>
+							<option value="deleteShippingDetail">Delete</option>
 						</select>
 					</td>
 				</tr>
