@@ -42,12 +42,14 @@ public class ShippingAction extends CommonAction {
 			shipping.getShippingDetailSet().addAll(detailList);
 			service.save(shipping);
 			errorMessage = null;
-			return SUCCESS;
 		} catch (Exception e) {
 			errorMessage = "Add shipping error.";
+			setList();
 			e.printStackTrace();
 			return ERROR;
 		}
+		
+		return SUCCESS;
 	}
 
 	public String display() {

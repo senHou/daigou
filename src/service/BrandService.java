@@ -32,4 +32,8 @@ public class BrandService extends Service{
 	public List findByName(String name) {
 		return ((BrandDao)dao).findByName(name);
 	}
+	
+	public int findTotalRow(Object object) throws Exception{
+		return dao.findTotalRow(object);
+	}
 }

@@ -20,13 +20,13 @@ import po.User;
 import service.Service;
 import utils.DataManager;
 
-public abstract class CommonAction extends ActionSupport
+public abstract class CommonAction extends AbstractCommonAction
 		implements ServletRequestAware, ServletResponseAware, UserAware, ModelDriven<User> {
 
 	public final static String BRAND_LIST = "brandList";
 	public final static String CUSTOMER_LIST = "customerList";
 	public final static String SHIPPING_COMPANY_LIST = "shippingCompanyList";
-	public final static int NUM_OF_ROW_PER_PAGE = 3;
+	public final static int NUM_OF_ROW_PER_PAGE = 15;
 
 	protected User user;
 
@@ -40,6 +40,7 @@ public abstract class CommonAction extends ActionSupport
 	protected List shippingCompanyList;
 	protected List customerList;
 	protected List brandList;
+	protected Service service;
 
 	private String dataManagerType;
 
@@ -48,7 +49,7 @@ public abstract class CommonAction extends ActionSupport
 	}
 
 	public CommonAction() {
-
+		
 	}
 
 	public String initAdd() {
@@ -61,7 +62,7 @@ public abstract class CommonAction extends ActionSupport
 		return SUCCESS;
 	}
 
-	private void setList() {
+	protected void setList() {
 		setBrandList(dataManager.getDataMap().get(BRAND_LIST));
 		setCustomerList(dataManager.getDataMap().get(CUSTOMER_LIST));
 		setShippingCompanyList(dataManager.getDataMap().get(SHIPPING_COMPANY_LIST));
@@ -99,14 +100,6 @@ public abstract class CommonAction extends ActionSupport
 		this.maxPage = maxPage;
 	}
 
-	public abstract String add();
-
-	public abstract String edit();
-
-	public abstract String list();
-
-	public abstract void ajaxListByPage();
-
 	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
 		this.response = arg0;
@@ -135,7 +128,6 @@ public abstract class CommonAction extends ActionSupport
 		dataManager.getDataMap().put(BRAND_LIST, service.getAll(Brand.class));
 		dataManager.getDataMap().put(SHIPPING_COMPANY_LIST, service.getAll(ShippingCompany.class));
 		dataManager.getDataMap().put(CUSTOMER_LIST, service.getAll(Customer.class));
-
 	}
 
 
@@ -175,5 +167,11 @@ public abstract class CommonAction extends ActionSupport
 
 	public List getShippingCompanyList() {
 		return shippingCompanyList;
+	}
+
+	@Override
+	public String add() {
+		setList();
+		return SUCCESS;
 	}
 }

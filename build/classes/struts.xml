@@ -78,7 +78,7 @@
 
 		<action name="addShipping" class="action.ShippingAction"
 			method="add">
-			<result name="success"  >
+			<result name="success" type="redirectAction" >
 				<param name="actionName">listShipping</param>
 			</result>
 			<result name="error">/shipping/shippingNew.jsp</result>
@@ -107,7 +107,7 @@
 			<result name="error">/shipping/shippingEdit.jsp</result>
 		</action>
 		
-		<action name="ajaxListByPage" class = "action.ShippingAction" method="ajaxListByPage">
+		<action name="ajaxListByPage*" class = "action.{1}Action" method="ajaxListByPage">
 		</action>
 		
 		<action name="setList" class = "action.UpdateDataListAction" method="updateDataList">
@@ -120,6 +120,15 @@
 		<action name="initShippingDetailEdit" class="action.ShippingDetailAction" method="initEdit">
 			<result>/shipping/shippingDetailEdit.jsp</result>
 		</action>
+		
+		<action name="shippingDetailEdit" class="action.ShippingDetailAction" method="edit">
+			<result name="success" type="redirectAction">
+				<param name="actionName" >listShippingDetail</param>
+				<param name="shipping.shippingNo">${detail.shippingNo}</param>
+			</result>
+			<result name="error">/shipping/shippingDetailEdit.jsp</result>
+		</action>
+
 
 		<action name="initAddWeekOrderDetail" class="action.WeekOrderDetailAction"
 			method="initAdd">
@@ -172,7 +181,28 @@
 			<result name="success">/customer/upload.jsp</result>
 			<result name="error">/customer/upload.jsp</result>
 		</action>
-
+		
+		<action name = "listShippingCompany" class="action.ShippingCompanyAction" method="list">
+			<result>/shippingCompany/shippingCompanyList.jsp</result>
+		</action>
+		<action name = "initShippingCompanyEdit" class="action.ShippingCompanyAction" method="initEdit">
+			<result>/shippingCompany/shippingCompanyEdit.jsp</result>
+		</action>
+		<action name = "editShippingCompany" class="action.ShippingCompanyAction" method="edit">
+			<result name="success" type="redirectAction">
+				<param name="actionName" >listShippingCompany</param>
+			</result>
+			<result name="error">/shippingCompany/shippingCompanyEdit.jsp</result>
+		</action>
+		<action name = "initAddShippingCompany" class="action.ShippingCompanyAction" method="initAdd">
+			<result>/shippingCompany/shippingCompanyNew.jsp</result>
+		</action>
+		<action name = "addShippingCompany" class="action.ShippingCompanyAction" method="add">
+			<result name="success" type="redirectAction">
+				<param name="actionName" >listShippingCompany</param>
+			</result>
+			<result name="error">/shippingCompany/shippingCompanyNew.jsp</result>
+		</action>
 	</package>
 
 

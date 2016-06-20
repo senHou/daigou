@@ -75,6 +75,8 @@ $(document).ready(function() {
 		</table>	
 	</div>		
 
-	<jsp:include page="../pagination.jsp"/> 		
+	<jsp:include page="../pagination.jsp">
+		<jsp:param value="Shipping" name="action"/>
+	</jsp:include> 		
 
 <jsp:include page="../footer.jsp"/>

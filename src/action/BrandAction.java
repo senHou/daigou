@@ -4,8 +4,10 @@ import java.io.File;
 import java.util.List;
 
 import po.Brand;
+import po.Shipping;
 import service.BrandService;
 import service.Service;
+import utils.HtmlUtils;
 import excel.BrandExcelUpload;
 import excel.ExcelUpload;
 import factory.DaoFactory;
@@ -59,13 +61,32 @@ public class BrandAction extends FileUploadAction{
 
 	@Override
 	public String list() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		try {
+			if (brand == null) {
+				brand = new Brand();
+			}
+
+			int maxRow = service.findTotalRow(brand);
+			maxPage = maxRow % NUM_OF_ROW_PER_PAGE == 0 ? maxRow / NUM_OF_ROW_PER_PAGE
+					: maxRow / NUM_OF_ROW_PER_PAGE + 1;
+
+			brandList = service.findByPaging(brand, pageNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
+		return SUCCESS;
 	}
 
 	@Override
 	public void ajaxListByPage() {
-		// TODO Auto-generated method stub
+		String status = list();
+		if (SUCCESS.equals(status)) {
+			writeToHtml(HtmlUtils.generateShippingSearchResult(brandList));
+		}else {
+			writeToHtml("Error Found!");
+		}
 		
 	}
 }

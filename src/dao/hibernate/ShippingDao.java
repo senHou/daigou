@@ -21,12 +21,19 @@ import utils.StringUtil;
 public class ShippingDao extends HibernateDao {
 
 	public List findShippingDetailByShippingNo(String shippingNo) {
-		startOperation();
-		String hql = "from ShippingDetail as s where s.shippingNo = :shipping_no";
-		Query query = session.createQuery(hql);
-		query.setParameter("shipping_no", shippingNo);
-		List<ShippingDetail> shippings = (List<ShippingDetail>) query.list();
-		return shippings;
+		try{
+			startOperation();
+			String hql = "from ShippingDetail as s where s.shippingNo = :shipping_no";
+			Query query = session.createQuery(hql);
+			query.setParameter("shipping_no", shippingNo);
+			List<ShippingDetail> shippings = (List<ShippingDetail>) query.list();
+			return shippings;
+		}catch(Exception e) {
+			handleException(e);
+			return null;
+		}finally {
+			HibernateUtil.close(session);
+		}
 	}
 
 	public double getShippingAmountByWeek(Date startDate, Date endDate) {
@@ -75,11 +82,12 @@ public class ShippingDao extends HibernateDao {
 			}
 
 			cr.addOrder(Order.desc("date"));
+			cr.addOrder(Order.asc("shippingNo"));
 
 			shippingList = cr.list();
 
 		} catch (Exception e) {
-			throw e;
+			handleException(e);
 		} finally {
 			HibernateUtil.close(session);
 		}
@@ -145,5 +153,4 @@ public class ShippingDao extends HibernateDao {
 			HibernateUtil.close(session);
 		}
 	}
-
 }

@@ -3,11 +3,11 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	$('.pagination').jqPagination({
-		link_string :'listShipping?pageNo={page_number}',
+		link_string :'ajaxListByPage?pageNo={page_number}',
 		max_page	: $("#maxPage").val(),
 		paged		: function(pageNo) {
 			
-			var url = "ajaxListByPage?pageNo="+pageNo;
+			var url = "ajaxListByPage"+$("#param").text()+"?pageNo="+pageNo;
 			var data = $("#searchForm").serialize();
 			data = decodeURIComponent(data, true ); 
 			$("a").addClass("disabled");
@@ -27,7 +27,7 @@ $(document).ready(function() {
 	});
 });
 </script>
-
+	<p id="param" style="display:none">${param.action}<br></p>
 	<div class="gigantic pagination">
 	    <a href="#" class="first" data-action="first">&laquo;</a>
 	    <a href="#" class="previous" data-action="previous">&lsaquo;</a>

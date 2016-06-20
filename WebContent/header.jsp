@@ -41,10 +41,12 @@ function redirect(url) {
 		<div class = "header backgroundColor80ff00">
 			<div class = "navi">
 				<li>
+					<ol><a href="home">Home</a></ol>
 					<ol><a href="initAddItem">Item</a></ol>
 					<ol><a href="initAddBrand">Brand</a></ol>
 					<ol><a href="initAddCustomer">Customer</a></ol>
 					<ol><a href="listShipping">Shipping</a></ol>
+					<ol><a href="listShippingCompany">Shipping Company</a></ol>
 					<ol><a href="initAddWeekOrderDetail">Weekly Order</a></ol>
 					<ol><a href="initUpdateDataList">Maintenance</a></ol>
 				</li>

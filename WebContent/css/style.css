@@ -44,7 +44,11 @@ div{
 .editDiv,.editTable,.imageDiv,.center{
 	margin: 0 auto;
 	margin-top:20px;
-},
+}
+
+.shippingDetailDiv {
+	width:90%;
+}
 
 .imageDiv{
 	text-align: center;
@@ -102,5 +106,5 @@ th{
 }
 
 select{
-	width:150px;
+	width:140px;
 }

@@ -6,7 +6,6 @@ import po.Shipping;
 
 public class HtmlUtils {
 	public static String genreateOption(String name, String value) {
-
 		return "<option value=\"" + value + "\">" + name + "</option>";
 	}
 
@@ -48,6 +47,5 @@ public class HtmlUtils {
 			html.append("</tr>");
 		}
 		return html.toString();
-
 	}
 }

@@ -38,7 +38,7 @@ public class ItemAction extends CommonAction{
 		try {
 			service.save(item);
 			setErrorMessage(null);
-			return SUCCESS;
+			return super.add();
 		}catch(Exception e) {
 			setErrorMessage("add item error");
 			return ERROR;
@@ -46,7 +46,7 @@ public class ItemAction extends CommonAction{
 	}
 	
 	public String initAdd() {
-		return SUCCESS;
+		return super.initAdd();
 	}
 	
 

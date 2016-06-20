@@ -5,13 +5,11 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#shippingDetailTable").on("change",".options",function(){
-		$(".searchResultTable").on("change",".options",function(){
-			if ($(this).val() != "") {
-				var shippingNo = $(this).parent().parent().children(":first-child").text();
-				var url = $(this).val() + "?shipping.shippingNo="+shippingNo;
-				redirect(url);
-			}
-		});
+		if ($(this).val() != "") {
+			var id = $(this).parent().parent().children(":first-child").text();
+			var url = $(this).val() + "?detail.id="+id;
+			redirect(url);
+		}
 	});
 });
 </script>
@@ -41,15 +39,15 @@ $(document).ready(function() {
 		</table>	
 	</div>
 		
-	<div class= "searchResultDiv">
+	<div class= "center shippingDetailDiv">
 		<table id = "shippingDetailTable">
 			<tr>
-				<th>ID</th>
-				<th>Shipping No</th>
-				<th>Item</th>
-				<th>Price</th>
-				<th>Quantity</th>
-				<th>Option</th>
+				<th style="width:10%">ID</th>
+				<th style="width:10%">Shipping No</th>
+				<th style="width:20%">Item</th>
+				<th style="width:10%">Price</th>
+				<th style="width:10%">Quantity</th>
+				<th style="width:10%">Option</th>
 			</tr>
 			
 			<s:iterator value="shippingDetailList" id="list">
