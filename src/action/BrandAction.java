@@ -14,8 +14,6 @@ import factory.DaoFactory;
 
 public class BrandAction extends FileUploadAction{
 	
-	private ExcelUpload uploadAction;
-	private Service service;
 	private Brand brand;
 	
 	public BrandAction() {
@@ -24,22 +22,6 @@ public class BrandAction extends FileUploadAction{
 		this.startRow = 0;
 	}
 	
-	@Override
-	public String uploadFile() {
-		try{
-			File file = new File(getFileName());
-			uploadAction = new BrandExcelUpload(file);
-			List<Brand> brandList = (List<Brand>)uploadAction.upload(sheetIdx, startRow);
-			service.saveAll(brandList);
-			setErrorMessage(null);
-			return SUCCESS;
-		}catch(Exception e) {
-			setErrorMessage("Add customer error");
-			return ERROR;
-		}
-	}
-	
-
 	public Brand getBrand() {
 		return brand;
 	}

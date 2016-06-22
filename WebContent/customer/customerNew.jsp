@@ -5,7 +5,7 @@
 <script>
 $(document).ready(function(){
 	$("#uploadCustomerButton").click(function(){
-		location.href = "initUploadCustomerFile";
+		location.href = "initUploadCustomerFile?uploadType=Customer";
 		return false;
 	});	
 });

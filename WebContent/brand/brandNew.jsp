@@ -7,7 +7,7 @@
 <script>
 $(document).ready(function(){
 	$("#uploadBrandButton").click(function(){
-		location.href = "initUploadBrandFile";
+		location.href = "initUploadBrandFile?uploadType=Brand";
 		return false;
 	});	
 });

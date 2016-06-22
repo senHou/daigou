@@ -3,12 +3,14 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:include page="../header.jsp"/> 
-<title>Display Brand</title>
+<title>Display Customer</title>
 <script>
 $(document).ready(function(){
 	
 });
 </script>
+<div class = "center" id = "customerSearchDiv">
 
+</div>
 <jsp:include page="../pagination.jsp"/> 
 <jsp:include page="../footer.jsp"/>

@@ -20,8 +20,8 @@ public class BrandExcelUpload extends ExcelUpload {
 	}
 
 	@Override
-	public Object convertRowListToObjectList() {
-		List<Object> lists = new ArrayList<Object>();
+	public List convertRowListToObjectList() {
+		List lists = new ArrayList<>();
 		for (int i = 0; i < rowValueList.size(); i++) {
 			Map<String, String> rowMap = rowValueList.get(i);
 			if (validRowData(rowMap) == false) {

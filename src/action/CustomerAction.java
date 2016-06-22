@@ -13,7 +13,6 @@ import service.CustomerService;
 
 public class CustomerAction extends FileUploadAction{
 
-	private CustomerService service;
 	private ExcelUpload uploadAction;
 	private Customer customer;
 	
@@ -25,7 +24,7 @@ public class CustomerAction extends FileUploadAction{
 	
 	
 	public void getShippings(String customerId) {
-		List<Shipping> shippingList = service.getCustomerShippings(customerId);
+		List<Shipping> shippingList = ((CustomerService)service).getCustomerShippings(customerId);
 		
 		for (Shipping shipping : shippingList) {
 			System.out.println(shipping.getShippingCompany());
@@ -33,21 +32,21 @@ public class CustomerAction extends FileUploadAction{
 	}
 
 
-	@Override
-	public String uploadFile() {
-		try{
-			File file = new File(getFileName());
-			uploadAction = new CustomerExcelUpload(file);
-			List<Customer> customerList = (List<Customer>)uploadAction.upload(sheetIdx, startRow);
-			service.saveAll(customerList);
-			setErrorMessage(null);
-			return SUCCESS;
-		}catch(Exception e) {
-			e.printStackTrace();
-			setErrorMessage("upload customer error");
-			return ERROR;
-		}
-	}
+//	@Override
+//	public String uploadFile() {
+//		try{
+//			File file = new File(getFileName());
+//			uploadAction = new CustomerExcelUpload(file);
+//			List<Customer> customerList = (List<Customer>)uploadAction.upload(sheetIdx, startRow);
+//			service.saveAll(customerList);
+//			setErrorMessage(null);
+//			return SUCCESS;
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//			setErrorMessage("upload customer error");
+//			return ERROR;
+//		}
+//	}
 
 
 	@Override

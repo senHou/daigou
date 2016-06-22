@@ -151,13 +151,12 @@
 
 		<action name="initUploadBrandFile" class="action.BrandAction"
 			method="initFile">
-			<result>/brand/upload.jsp</result>
+			<result>upload.jsp</result>
 		</action>
 
-		<action name="uploadBrandFile" class="action.BrandAction"
-			method="uploadFile">
-			<result name="success">/brand/upload.jsp</result>
-			<result name="error">/brand/upload.jsp</result>
+		<action name="upload*" class="action.{1}Action" method="uploadFile">
+			<result name="success">upload.jsp</result>
+			<result name="error">upload.jsp</result>
 		</action>
 
 
@@ -174,12 +173,7 @@
 		</action>
 		<action name="initUploadCustomerFile" class="action.CustomerAction"
 			method="initFile">
-			<result>/customer/upload.jsp</result>
-		</action>
-		<action name="uploadCustomerFile" class="action.CustomerAction"
-			method="uploadFile">
-			<result name="success">/customer/upload.jsp</result>
-			<result name="error">/customer/upload.jsp</result>
+			<result>upload.jsp</result>
 		</action>
 		
 		<action name = "listShippingCompany" class="action.ShippingCompanyAction" method="list">
