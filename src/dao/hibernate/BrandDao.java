@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import action.CommonAction;
@@ -45,7 +46,9 @@ public class BrandDao extends HibernateDao{
 			if (brand.getName() != null && !StringUtil.isEmpty(brand.getName())) {
 				cr.add(Restrictions.like("brand.name", "%" + brand.getName() + "%"));
 			}
-
+			cr.setFirstResult((pageNo - 1) * CommonAction.NUM_OF_ROW_PER_PAGE);
+			cr.setMaxResults(CommonAction.NUM_OF_ROW_PER_PAGE);
+			cr.addOrder(Order.desc("id"));
 			shippingList = cr.list();
 
 		} catch (Exception e) {
@@ -63,7 +66,7 @@ public class BrandDao extends HibernateDao{
 		List<Brand> shippingList = new ArrayList<Brand>();
 		try {
 			startOperation();
-			Criteria cr = session.createCriteria(Brand.class, "brand");
+			Criteria cr = session.createCriteria(Brand.class, "brand").setProjection(Projections.rowCount());
 
 
 			if (brand.getName() != null && !StringUtil.isEmpty(brand.getName())) {

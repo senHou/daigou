@@ -10,11 +10,13 @@ import factory.DaoFactory;
 import po.Customer;
 import po.Shipping;
 import service.CustomerService;
+import utils.HtmlUtils;
 
 public class CustomerAction extends FileUploadAction{
 
 	private ExcelUpload uploadAction;
 	private Customer customer;
+	private String originCustomerId;
 	
 	public CustomerAction(){
 		super();
@@ -61,14 +63,25 @@ public class CustomerAction extends FileUploadAction{
 		}
 		
 	}
+	
 
+
+	
+	public String initEdit(){
+		customer = (Customer)service.get(Customer.class, customer.getId());
+		return super.initEdit();
+	}
 
 	@Override
-	public String edit() {
-		// TODO Auto-generated method stub
-		return null;
+	public String edit(){
+		try {
+			((CustomerService)service).update(customer, !customer.getId().equalsIgnoreCase(originCustomerId), originCustomerId);
+			return SUCCESS;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
 	}
-	
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -77,17 +90,53 @@ public class CustomerAction extends FileUploadAction{
 		this.customer = customer;
 	}
 
+	public String getOriginCustomerId() {
+		return originCustomerId;
+	}
+	
+	public void setOriginCustomerId(String originCustomerId) {
+		this.originCustomerId = originCustomerId;
+	}
+	
 
 	@Override
 	public String list() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		try {
+			if (customer == null) {
+				customer = new Customer();
+			}
+
+			int maxRow = service.findTotalRow(customer);
+			maxPage = maxRow % NUM_OF_ROW_PER_PAGE == 0 ? maxRow / NUM_OF_ROW_PER_PAGE
+					: maxRow / NUM_OF_ROW_PER_PAGE + 1;
+
+			customerList = service.findByPaging(customer, pageNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
+		return SUCCESS;
 	}
 
 
 	@Override
 	public void ajaxListByPage() {
-		// TODO Auto-generated method stub
-		
+		try {
+
+			if (customer == null) {
+				customer = new Customer();
+			}
+			int maxRow = service.findTotalRow(customer);
+
+			maxPage = maxRow % NUM_OF_ROW_PER_PAGE == 0 ? maxRow / NUM_OF_ROW_PER_PAGE
+					: maxRow / NUM_OF_ROW_PER_PAGE + 1;
+
+			customerList = service.findByPaging(customer, pageNo);
+
+			writeToHtml(HtmlUtils.generateCustomerSearchResult(customerList));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

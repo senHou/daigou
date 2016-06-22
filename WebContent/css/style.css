@@ -103,6 +103,7 @@ th{
 .even {
 	background-color:#80ff00;
 	color: white;
+	font-weight: bold;
 }
 
 select{

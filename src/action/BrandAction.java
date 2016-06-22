@@ -12,20 +12,20 @@ import excel.BrandExcelUpload;
 import excel.ExcelUpload;
 import factory.DaoFactory;
 
-public class BrandAction extends FileUploadAction{
-	
+public class BrandAction extends FileUploadAction {
+
 	private Brand brand;
-	
+
 	public BrandAction() {
 		super();
 		service = new BrandService();
 		this.startRow = 0;
 	}
-	
+
 	public Brand getBrand() {
 		return brand;
 	}
-	
+
 	public void setBrand(Brand brand) {
 		this.brand = brand;
 	}
@@ -37,13 +37,26 @@ public class BrandAction extends FileUploadAction{
 	}
 
 	@Override
+	public String initEdit() {
+
+		brand = (Brand) service.get(Brand.class, brand.getId());
+		return super.initEdit();
+	}
+
+	@Override
 	public String edit() {
-		return null;
+		try {
+			service.update(brand);
+			return SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
 	}
 
 	@Override
 	public String list() {
-		
+
 		try {
 			if (brand == null) {
 				brand = new Brand();
@@ -66,9 +79,9 @@ public class BrandAction extends FileUploadAction{
 		String status = list();
 		if (SUCCESS.equals(status)) {
 			writeToHtml(HtmlUtils.generateShippingSearchResult(brandList));
-		}else {
+		} else {
 			writeToHtml("Error Found!");
 		}
-		
+
 	}
 }

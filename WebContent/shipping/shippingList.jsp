@@ -53,8 +53,13 @@ $(document).ready(function() {
 				<th style="width:15%">Url</th>
 				<th style="width:8%">Options</th>
 			</tr>
-			<s:iterator value="shippingList" id="list">
-				<tr class="removable">
+			<s:iterator value="shippingList" id="list" status="rowstatus">
+				<s:if test="#rowstatus.odd == true">
+				<tr class="removable odd">
+				</s:if >
+				<s:else>
+				<tr class="removable even">
+				</s:else>
 					<td><s:property value="#list.shippingNo" /></td>
 					<td><s:property value="#list.date" /></td>
 					<td><s:property value="#list.customer.name" /></td>

@@ -16,7 +16,6 @@ import utils.StringUtil;
 
 public class ShippingAction extends CommonAction {
 
-	private ShippingService service;
 	private List shippingList;
 	private List shippingDetailList;
 	private Shipping shipping;
@@ -135,7 +134,7 @@ public class ShippingAction extends CommonAction {
 	@Override
 	public String edit(){
 		try {
-			service.update(shipping, !shipping.getShippingNo().equalsIgnoreCase(originShippingNo), originShippingNo);
+			((ShippingService)service).update(shipping, !shipping.getShippingNo().equalsIgnoreCase(originShippingNo), originShippingNo);
 			return SUCCESS;
 		}catch(Exception e) {
 			e.printStackTrace();

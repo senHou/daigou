@@ -140,6 +140,12 @@
 			<result name="error">/weekOrderDetail/weekOrderDetailNew.jsp</result>
 		</action>
 
+		<action name="listBrand" class="action.BrandAction"
+			method="list">
+			<result name="success">/brand/brandList.jsp</result>
+			<result name="error">/brand/brandList.jsp</result>
+		</action>
+
 		<action name="initAddBrand" class="action.BrandAction" method="initAdd">
 			<result>/brand/brandNew.jsp</result>
 		</action>
@@ -147,6 +153,18 @@
 		<action name="addBrand" class="action.BrandAction" method="add">
 			<result name="success">/brand/brandNew.jsp</result>
 			<result name="error">/brand/brandNew.jsp</result>
+		</action>
+		
+		<action name="initBrandEdit" class="action.BrandAction"
+			method="initEdit">
+			<result>/brand/brandEdit.jsp</result>
+		</action>
+		
+		<action name="editBrand" class = "action.BrandAction" method="edit" >
+			<result name="success" type="redirectAction">
+				<param name="actionName" >listBrand</param>
+			</result>
+			<result name="error">/brand/brandEdit.jsp</result>
 		</action>
 
 		<action name="initUploadBrandFile" class="action.BrandAction"
@@ -159,7 +177,11 @@
 			<result name="error">upload.jsp</result>
 		</action>
 
-
+		<action name="listCustomer" class="action.CustomerAction"
+			method="list">
+			<result name="success">/customer/customerList.jsp</result>
+			<result name="error">/customer/customerList.jsp</result>
+		</action>
 
 		<action name="initAddCustomer" class="action.CustomerAction"
 			method="initAdd">
@@ -171,6 +193,19 @@
 			<result name="success">/customer/customerNew.jsp</result>
 			<result name="error">/customer/customerNew.jsp</result>
 		</action>
+		
+		<action name="initCustomerEdit" class="action.CustomerAction"
+			method="initEdit">
+			<result>/customer/customerEdit.jsp</result>
+		</action>
+		
+		<action name="editCustomer" class = "action.CustomerAction" method="edit" >
+			<result name="success" type="redirectAction">
+				<param name="actionName" >listCustomer</param>
+			</result>
+			<result name="error">/customer/customerEdit.jsp</result>
+		</action>
+		
 		<action name="initUploadCustomerFile" class="action.CustomerAction"
 			method="initFile">
 			<result>upload.jsp</result>
