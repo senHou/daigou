@@ -42,7 +42,7 @@ function redirect(url) {
 			<div class = "navi">
 				<li>
 					<ol><a href="home">Home</a></ol>
-					<ol><a href="initAddItem">Item</a></ol>
+					<ol><a href="listItem">Item</a></ol>
 					<ol><a href="listBrand">Brand</a></ol>
 					<ol><a href="listCustomer">Customer</a></ol>
 					<ol><a href="listShipping">Shipping</a></ol>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import po.Brand;
 import po.Customer;
+import po.Item;
 import po.Shipping;
 
 public class HtmlUtils {
@@ -108,5 +109,36 @@ public class HtmlUtils {
 			count ++;
 		}
 		return html.toString();
+	}
+
+	public static String generateItemSearchResult(List<Item> itemList) {
+		StringBuffer html = new StringBuffer();
+		int count = 1;
+		for (Item item : itemList) {
+			if (count % 2 != 0){
+				html.append("<tr class = 'removable odd'>");
+			}else {
+				html.append("<tr class = 'removable even'>");
+			}
+			html.append("<td>");
+			html.append(item.getId());
+			html.append("</td>");
+			html.append("<td>");
+			html.append(item.getBrand().getName());
+			html.append("</td>");
+			html.append("<td>");
+			html.append(item.getName());
+			html.append("</td>");
+			html.append("<td>");
+			html.append("<select style='width:100%'  class = 'options' name='options'>");
+			html.append("<option value=''>Option</option>");
+			html.append("<option value='initItemEdit'>Edit</option>");
+			html.append("</select>");
+			html.append("</td>");
+			html.append("</tr>");
+			count ++;
+		}
+		return html.toString();
+
 	}
 }

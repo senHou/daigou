@@ -69,6 +69,17 @@
 			<result name="success">/item/itemList.jsp</result>
 			<result name="error">/item/itemList.jsp</result>
 		</action>
+		
+		<action name="initItemEdit" class = "action.ItemAction" method="initEdit">
+			<result>/item/itemEdit.jsp</result>
+		</action>
+		
+		<action name="editItem" class = "action.ItemAction" method="edit" >
+			<result name="success" type="redirectAction">
+				<param name="actionName" >listItem</param>
+			</result>
+			<result name="error">/item/itemEdit.jsp</result>
+		</action>
 
 		<action name="initAddShipping" class="action.ShippingAction"
 			method="initAdd">

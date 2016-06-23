@@ -37,7 +37,7 @@ public class BrandDao extends HibernateDao{
 	@Override
 	public List findByPaging(Object object, int pageNo) throws Exception {
 		Brand brand = (Brand) object;
-		List<Brand> shippingList = new ArrayList<Brand>();
+		List<Brand> brandList = new ArrayList<Brand>();
 		try {
 			startOperation();
 			Criteria cr = session.createCriteria(Brand.class, "brand");
@@ -49,7 +49,7 @@ public class BrandDao extends HibernateDao{
 			cr.setFirstResult((pageNo - 1) * CommonAction.NUM_OF_ROW_PER_PAGE);
 			cr.setMaxResults(CommonAction.NUM_OF_ROW_PER_PAGE);
 			cr.addOrder(Order.desc("id"));
-			shippingList = cr.list();
+			brandList = cr.list();
 
 		} catch (Exception e) {
 			handleException(e);
@@ -57,13 +57,12 @@ public class BrandDao extends HibernateDao{
 			HibernateUtil.close(session);
 		}
 
-		return shippingList;
+		return brandList;
 	}
 	
 	@Override
 	public Integer findTotalRow(Object obj) throws Exception {
 		Brand brand = (Brand) obj;
-		List<Brand> shippingList = new ArrayList<Brand>();
 		try {
 			startOperation();
 			Criteria cr = session.createCriteria(Brand.class, "brand").setProjection(Projections.rowCount());

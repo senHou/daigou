@@ -22,6 +22,6 @@ public class ItemService extends Service{
 	}
 	
 	public Item getItemByBrandIdAandItemName(int brandId, String itemName) {
-		return ((ItemDao) dao).getItemByBrandIdAandItemName(brandId, itemName);
+		return ((ItemDao) dao).getItemByBrandIdAndItemName(brandId, itemName);
 	}
 }
